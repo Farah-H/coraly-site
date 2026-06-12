@@ -78,12 +78,13 @@
   .scrollcue{position:absolute;bottom:26px;left:50%;transform:translateX(-50%);font-size:20px;
     color:#6f6357;animation:cuebob 2.4s ease-in-out infinite;transition:opacity .4s;pointer-events:none}
   @keyframes cuebob{0%,100%{transform:translate(-50%,0)}50%{transform:translate(-50%,8px)}}
+  @media (max-width:900px){ .scrollcue{display:none} }
   .herotrust{margin:0;font-size:14px;font-weight:600;color:#6f6357}
 
   /* ---------- section 2: know what your numbers mean / catches a bad reading ----------
      card anatomy + palette mirror Coraly_AppStore_Screenshots_Final.html */
   .sev{height:200vh;position:relative}
-  .sevprog{position:sticky;top:0;height:3px;width:0;background:#1A6E2E;z-index:4;transition:background .25s}
+  .sevprog{position:sticky;top:env(safe-area-inset-top,0px);height:3px;width:0;background:#1A6E2E;z-index:4;opacity:0;transition:background .25s,opacity .3s}
   .sevpin{position:sticky;top:3px;min-height:100vh;display:flex;align-items:flex-start;justify-content:center;
     gap:clamp(36px,6vw,90px);padding:max(24px,calc(50vh - 250px)) 24px 24px;flex-wrap:wrap}
   .sev .copy{flex:0 1 520px;max-width:520px;text-align:left;align-self:stretch;
@@ -122,7 +123,7 @@
   .rcard .tryit input[type=range]{width:100%;accent-color:#1A6E2E}
   /* ---------- section 3: see your trend at a glance ---------- */
   .trend{height:220vh;position:relative}
-  .trendprog{position:sticky;top:0;height:3px;width:0;background:#1A6E2E;z-index:4;transition:background .25s}
+  .trendprog{position:sticky;top:env(safe-area-inset-top,0px);height:3px;width:0;background:#1A6E2E;z-index:4;opacity:0;transition:background .25s,opacity .3s}
   .trendpin{position:sticky;top:3px;min-height:100vh;display:flex;align-items:flex-start;justify-content:center;
     gap:clamp(36px,6vw,90px);padding:max(24px,calc(50vh - 250px)) 24px 24px;flex-wrap:wrap}
   .trend .copy{flex:0 1 520px;max-width:520px;text-align:left;align-self:stretch;
@@ -163,21 +164,13 @@
     padding:4px 10px;border-radius:99px;white-space:nowrap}
   .chev{color:#c9b9a6;font-size:16px;font-weight:700}
   @media (max-width:900px){
-    .trendpin{flex-direction:column;justify-content:flex-start;gap:40px;padding-top:9vh}
+    .trendpin{flex-direction:column;justify-content:flex-start;gap:18px;padding-top:calc(env(safe-area-inset-top,0px) + 12px)}
     .trend .copy{order:-1;text-align:center;align-self:center;display:block;flex:0 0 auto}
     .trend .lede{margin:22px auto 0}
     .tcard{align-self:center;flex:0 0 auto;max-width:92vw}
   }
-  @media (max-width:900px) and (max-height:740px){
-    .rc-big{font-size:36px}
-    .rcard{padding:14px}
-    .rc-read{padding:12px 12px 10px}
-    .rc-fine{font-size:10px}
-    .sev .lede{min-height:0}
-    .sevpin{padding-top:4vh}
-  }
   @media (max-width:900px){
-    .sevpin{flex-direction:column;justify-content:flex-start;gap:40px;padding-top:9vh}
+    .sevpin{flex-direction:column;justify-content:flex-start;gap:18px;padding-top:calc(env(safe-area-inset-top,0px) + 12px)}
     .sev .copy{order:-1;text-align:center;align-self:center;display:block;flex:0 0 auto}
     .sev .lede{margin:22px auto 0}
     .rcard{align-self:center;flex:0 0 auto;max-width:92vw}
@@ -229,6 +222,41 @@
   .foot-row nav a{color:#4a4039;text-decoration:none;font-weight:600}
   .foot-fine{font-size:11.5px;color:#6f6357;line-height:1.65;margin-top:18px;max-width:90ch}
   .foot-c{font-size:11.5px;color:#6f6357;margin-top:14px}
+  /* mobile compaction: the full story of each ride fits above Safari's bar */
+  @media (max-width:900px){
+    .sev h2,.trend h2{font-size:clamp(30px,8.2vw,38px)}
+    .sev .lede,.trend .lede{margin-top:10px;font-size:16px;min-height:0}
+    .sevpill,.trendpill{margin-top:14px}
+    .rcard{padding:14px}
+    .rc-big{font-size:38px}
+    .rc-read{padding:12px 12px 10px}
+    .rc-fine{font-size:10px;margin-top:8px}
+    .rcard .tryit{margin-top:10px}
+    .impx .impt{font-size:17px;margin-top:12px}
+    .impx .impp{font-size:12.5px}
+    .rc-ctas .measure{padding:10px;margin-top:10px}
+    .rc-ctas .anyway{margin-top:8px}
+    .tcard{padding:12px}
+    .tcard .chart{padding:8px}
+    .tcard .days{font-size:10px;margin-top:6px}
+    .tcard .legend{font-size:10.5px;margin-top:6px}
+    .tcard .hrow{min-height:50px;margin-top:7px}
+    .hmain{min-height:50px;padding:6px 10px}
+    .hv{font-size:14px}
+    .hp{font-size:10px;margin-top:1px}
+    .hday{font-size:12px}
+    .htime{font-size:9px}
+    .hb{font-size:9.5px;padding:3px 8px}
+  }
+  /* fix 1: size and centre the pinned stories in the SMALL viewport (above
+     Safari's bar). svh = vh on desktop, so nothing changes there. */
+  @supports (height:100svh){
+    .hero,.closesec{min-height:100svh}
+    .sevpin,.trendpin{min-height:100svh}
+    @media (min-width:901px){
+      .sevpin,.trendpin{padding-top:max(24px,calc(50svh - 250px))}
+    }
+  }
 </style>
 <script type="application/ld+json">
 {
@@ -766,6 +794,7 @@ addEventListener('focus', ()=>{ FOCUSED = true; });
     if (total <= 0) return;
     const tt = Math.min(1, Math.max(0, -dRect.top / total));
     prog.style.width = (tt*100)+'%';
+    prog.style.opacity = (tt > .02 && tt < .98) ? 1 : 0;
     const s = Math.round(108 + tt*(174-108));
     if (s !== lastS){ lastS = s; render(s); }
   });
@@ -869,6 +898,7 @@ addEventListener('focus', ()=>{ FOCUSED = true; });
     if (total <= 0) return;
     const tt = Math.min(1, Math.max(0, -dRect.top / total));
     prog.style.width = (tt*100)+'%';
+    prog.style.opacity = (tt > .02 && tt < .98) ? 1 : 0;
     render(tt*(N-1));
   });
   render(0);
