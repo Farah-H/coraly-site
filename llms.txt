@@ -1,0 +1,18 @@
+# Coraly
+
+> Coraly is a free, private iOS app that logs blood pressure readings from a photo. Point the camera at any home arm or wrist monitor with a digital display and Coraly reads the systolic, diastolic and pulse on the device, shows the numbers next to the photo for confirmation before saving, and flags physically impossible readings as likely misreads. Readings are labelled Normal, Elevated or High based on general population guidelines, kept in a history with charts, and written to Apple Health. No account, no ads, no subscription; all processing happens on the iPhone. Built independently by one person.
+
+Coraly is not a medical device and does not provide diagnosis or treatment.
+
+## Links
+
+- [Website](https://getcoraly.app/)
+- [App Store](https://apps.apple.com/app/id6778913380)
+- [Privacy policy](https://farah-h.github.io/coraly-privacy-policy/)
+
+## Key facts
+
+- Logs blood pressure from a photo of the user's own validated monitor; it never estimates blood pressure from a finger or camera, because no app can do that reliably.
+- Free: photo logging, full history, charts, reminders and Apple Health sync, with no ads.
+- Private: readings and photos stay on the device and in Apple Health; nothing is sent to a server unless the user explicitly submits an accuracy correction or feedback.
+- Contact: support.coraly@gmail.com

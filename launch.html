@@ -58,19 +58,7 @@
   .applepill .a{font-size:27px}
   .applepill .t small{display:block;font-size:11px;font-weight:400}
   .applepill .t{font-size:17px;font-weight:700}
-  .ctarow{display:flex;align-items:center;gap:18px;flex-wrap:wrap}
-  .sleep{position:relative;display:inline-flex;align-items:center;gap:7px;background:#3a3531;color:#fff;
-    padding:9px 18px;border-radius:11px;line-height:1.2;cursor:pointer;border:0;font:inherit;
-    transition:transform .26s cubic-bezier(.3,1.6,.4,1)}
-  .sleep .a{font-size:20px;opacity:.85}
-  .sleep .t small{display:block;font-size:9.5px;font-weight:400;opacity:.75}
-  .sleep .t{font-size:13.5px;font-weight:700}
-  .sleep.dip{transform:translateY(14px) scale(.97)}
-  .tfpill{background:#1E7A34;padding:16px 32px;border-radius:15px}
-  .tfpill .t{font-size:19px}
-  .tfpill .t small{font-size:12.5px}
-  .sleepmsg{margin-top:14px;font-size:14px;color:#6f6357;min-height:1.5em;font-style:italic;
-    transition:opacity .3s;font-family:"New York","Iowan Old Style",Georgia,serif}
+  .ctarow{display:flex;align-items:center;gap:20px;flex-wrap:wrap}
   .newchip{margin-top:14px;font-size:12.5px;font-weight:600;color:#6f6357;letter-spacing:.02em}
   .scrollcue{position:absolute;bottom:26px;left:50%;transform:translateX(-50%);font-size:20px;
     color:#6f6357;animation:cuebob 2.4s ease-in-out infinite;transition:opacity .4s;pointer-events:none}
@@ -320,11 +308,10 @@
       <h1>One Photo.<br><span class="accent serif">Logged.</span></h1>
       <p class="lede">Take a photo of your blood pressure monitor and Coraly does the rest. No typing, no notebook.</p>
       <div class="ctarow">
-        <button class="sleep" id="sleepbtn"><span class="a">&#63743;</span><span class="t"><small>Coming soon to the</small>App Store</span></button>
-        <a class="applepill tfpill" href="https://testflight.apple.com/join/NeDKevPZ"><span class="t"><small>Meanwhile, try it on</small>TestFlight</span></a>
+        <a class="applepill" href="https://apps.apple.com/app/id6778913380"><span class="a">&#63743;</span><span class="t"><small>Download on the</small>App Store</span></a>
+        <p class="herotrust">Free. Private. Calm.</p>
       </div>
-      <p class="sleepmsg" id="sleepmsg" aria-live="polite"></p>
-      <p class="herotrust" style="margin-top:4px">Free. Private. Calm.</p>
+      <p class="newchip">New on the App Store</p>
     </div>
     <div class="scrollcue" id="scrollcue" aria-hidden="true">&#8595;</div>
     <div class="phoneframe" id="phoneframe">
@@ -359,7 +346,7 @@
       <div class="copy">
         <h2 id="sev-head">Know what your<br><span id="sev-accent" style="color:#1A6E2E">numbers mean.</span></h2>
         <p class="lede" id="sev-sub">Calm, colour-coded severity. Every reading clearly labelled, so you know what it means at a glance.</p>
-        <a class="applepill sevpill" href="https://testflight.apple.com/join/NeDKevPZ"><span class="t"><small>Try it early on</small>TestFlight</span></a>
+        <a class="applepill sevpill" href="https://apps.apple.com/app/id6778913380"><span class="a">&#63743;</span><span class="t"><small>Download on the</small>App Store</span></a>
       </div>
     </div>
   </section>
@@ -371,7 +358,7 @@
       <div class="copy">
         <h2>See your trend<br><span id="tr-accent" style="color:#1A6E2E">at a glance.</span></h2>
         <p class="lede">Your full history, easy to scan, always free.</p>
-        <a class="applepill trendpill" id="tr-pill" href="https://testflight.apple.com/join/NeDKevPZ"><span class="t"><small>Try it early on</small>TestFlight</span></a>
+        <a class="applepill trendpill" id="tr-pill" href="https://apps.apple.com/app/id6778913380"><span class="a">&#63743;</span><span class="t"><small>Download on the</small>App Store</span></a>
       </div>
       <div class="tcard" id="tcard">
         <div class="chart">
@@ -416,7 +403,7 @@
       <div class="lockrow">
         <span class="lk"><img src="assets/drop-512.png" alt="" width="356" height="512" loading="lazy" decoding="async" id="lkdrop" title="plop"><span class="wm">Coraly</span></span>
         <span class="vrule" aria-hidden="true"></span>
-        <a class="applepill tfpill" href="https://testflight.apple.com/join/NeDKevPZ"><span class="t"><small>Try it early on</small>TestFlight</span></a>
+        <a class="applepill" href="https://apps.apple.com/app/id6778913380"><span class="a">&#63743;</span><span class="t"><small>Download on the</small>App Store</span></a>
       </div>
     </div>
   </section>
@@ -638,7 +625,7 @@ addEventListener('focus', ()=>{ FOCUSED = true; });
 
   /* CLICK · C3 splash: a strike plus a crown of secondary droplets */
   addEventListener('pointerdown',e=>{
-    if (e.target.closest('.rcard,.tcard,.fcard,.lk,.sleep')) return;
+    if (e.target.closest('.rcard,.tcard,.fcard,.lk')) return;
     dropPx(e.clientX,e.clientY,.5,.018);
     for(let i=0;i<6;i++){
       const a=Math.random()*6.283, r=46+Math.random()*54;
@@ -646,15 +633,6 @@ addEventListener('focus', ()=>{ FOCUSED = true; });
                             .12+Math.random()*.10, .009), 60+Math.random()*180);
     }
   },{passive:true});
-
-  /* the sleeping button lands in the water as it dips */
-  const slpB = document.getElementById('sleepbtn');
-  if (slpB){
-    slpB.addEventListener('pointerdown', ()=>{
-      const r = slpB.getBoundingClientRect();
-      setTimeout(()=> dropPx(r.left + r.width/2, r.bottom + 12, .4, .016), 130);
-    });
-  }
 
   /* delight 1: opening a question plops a droplet beside the card */
   document.querySelectorAll('.fcard details').forEach(d=>{
@@ -859,22 +837,6 @@ addEventListener('focus', ()=>{ FOCUSED = true; });
     render(tt*(N-1));
   });
   render(0);
-})();
-
-/* the sleeping button: dips, whispers, and (when the pond is awake) splashes */
-(function(){
-  const b = document.getElementById('sleepbtn'), m = document.getElementById('sleepmsg');
-  if (!b) return;
-  const lines = ['Soon. The pond is settling.', 'Almost. Apple is having a look.',
-                 'Patience is good for blood pressure.', 'Any day now.'];
-  let i = 0, busy = false;
-  b.addEventListener('click', ()=>{
-    if (busy) return; busy = true;
-    b.classList.add('dip');
-    m.style.opacity = 0;
-    setTimeout(()=>{ m.textContent = lines[i++ % lines.length]; m.style.opacity = 1; }, 140);
-    setTimeout(()=>{ b.classList.remove('dip'); busy = false; }, 320);
-  });
 })();
 
 /* hero scroll cue fades once the journey starts */
