@@ -1,0 +1,754 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Coraly: BP Log</title>
+<link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/icon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="assets/icon-16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="assets/icon-180.png">
+<meta name="description" content="Snap a photo of your home monitor and Coraly logs the reading for you. No ads, no account, and your history is always free. The simple, private blood-pressure log.">
+<meta property="og:title" content="Coraly — One Photo. Logged.">
+<meta property="og:description" content="Snap a photo of your home monitor and Coraly logs the reading for you. No ads, no account, and your history is always free.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://getcoraly.app/assets/og.png">
+<meta property="og:url" content="https://getcoraly.app/">
+<link rel="canonical" href="https://getcoraly.app/">
+<style>
+  *{box-sizing:border-box;margin:0}
+  body{font:17px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    background:#F6EBE1;color:#2a211c;-webkit-font-smoothing:antialiased;overflow-x:hidden;-webkit-user-select:none;user-select:none}
+  .serif{font-family:"New York","Iowan Old Style",Georgia,"Times New Roman",serif}
+
+  /* the pond: one continuous surface behind the whole page */
+  #pond{position:fixed;inset:0;width:100%;height:100%;z-index:0}
+  #grain{position:fixed;inset:0;z-index:2;pointer-events:none;mix-blend-mode:soft-light;opacity:.32;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size:240px 240px}
+  main{position:relative;z-index:1}
+
+  /* ---------- section 1: hero ---------- */
+  .hero{position:relative;min-height:100vh;display:flex;align-items:center;justify-content:center;gap:clamp(36px,6vw,90px);padding:24px;flex-wrap:wrap}
+  .hero .copy{max-width:560px;text-align:left}
+  h1{font-size:clamp(48px,7vw,96px);line-height:.97;letter-spacing:-.03em;font-weight:700}
+  h1 .accent{color:#B52121}
+  .lede{font-size:clamp(18px,2.2vw,22px);color:#7a6c61;margin:24px 0 32px;max-width:44ch}
+  /* sized by viewport HEIGHT (the image is 1:2.17 tall): width = 34vh keeps the full phone
+     ~77vh tall, always inside the viewport with air around it */
+  .phoneframe{width:clamp(190px,34vh,300px);max-width:72vw;background:#0c0c0d;border-radius:clamp(30px,5vh,46px);
+    padding:clamp(7px,1.1vh,11px);flex:0 0 auto;
+    box-shadow:0 0 16px 3px rgba(108,78,52,.20),0 0 44px 12px rgba(108,78,52,.09)}
+  .phoneframe img{display:block;width:100%;height:auto;border-radius:clamp(24px,4vh,36px)}
+  @media (max-width:820px){
+    .hero{flex-direction:column;justify-content:center;gap:44px;padding-top:72px}
+    .hero .copy{text-align:center}
+    .lede{margin:24px auto 32px}
+    .ctarow{justify-content:center}
+  }
+  .applepill{display:inline-flex;align-items:center;gap:9px;background:#111;color:#fff;text-decoration:none;
+    padding:13px 26px;border-radius:13px;line-height:1.2;transition:transform .15s ease}
+  .applepill:active{transform:scale(.97)}
+  .applepill .a{font-size:27px}
+  .applepill .t small{display:block;font-size:11px;font-weight:400;opacity:.8}
+  .applepill .t{font-size:17px;font-weight:700}
+  .ctarow{display:flex;align-items:center;gap:20px;flex-wrap:wrap}
+  .newchip{margin-top:14px;font-size:12.5px;font-weight:600;color:#6f6357;letter-spacing:.02em}
+  .scrollcue{position:absolute;bottom:26px;left:50%;transform:translateX(-50%);font-size:20px;
+    color:#6f6357;animation:cuebob 2.4s ease-in-out infinite;transition:opacity .4s;pointer-events:none}
+  @keyframes cuebob{0%,100%{transform:translate(-50%,0)}50%{transform:translate(-50%,8px)}}
+  .herotrust{margin:0;font-size:14px;font-weight:600;color:#7a6c61}
+
+  /* ---------- section 2: know what your numbers mean / catches a bad reading ----------
+     card anatomy + palette mirror Coraly_AppStore_Screenshots_Final.html */
+  .sev{height:200vh;position:relative}
+  .sevprog{position:sticky;top:0;height:3px;width:0;background:#1A6E2E;z-index:4;transition:background .25s}
+  .sevpin{position:sticky;top:3px;min-height:100vh;display:flex;align-items:flex-start;justify-content:center;
+    gap:clamp(36px,6vw,90px);padding:max(24px,calc(50vh - 250px)) 24px 24px;flex-wrap:wrap}
+  .sev .copy{flex:0 1 520px;max-width:520px;text-align:left;align-self:stretch;
+    display:flex;flex-direction:column;justify-content:center;transition:none}
+  .sev h2{font-size:clamp(38px,5.5vw,72px);line-height:.99;letter-spacing:-.025em;font-weight:700;
+    transition:opacity .3s ease}
+  .sev .lede{font-size:clamp(17px,2vw,20px);color:#7a6c61;margin:22px 0 0;max-width:44ch;min-height:3.3em}
+  .sevpill{background:#1A6E2E;margin-top:26px;align-self:flex-start;transition:background .25s}
+  /* top-anchored so height changes grow downward only — the numbers never move */
+  .rcard{flex:0 1 340px;background:#fffdfb;border:1px solid #e7ddd2;border-radius:20px;padding:20px;
+    box-shadow:0 0 16px 3px rgba(108,78,52,.20),0 0 44px 12px rgba(108,78,52,.09);
+    transition:background .25s,border-color .25s}
+  /* collapsible regions: height animates instead of popping */
+  .rc-coll{display:grid;grid-template-rows:0fr;transition:grid-template-rows .35s ease}
+  .rc-coll.on{grid-template-rows:1fr}
+  .rc-coll>.cl{overflow:hidden;min-height:0}
+  .rc-read{border-radius:14px;border:1.5px solid;padding:18px 16px 14px;text-align:center;
+    transition:background .25s,border-color .25s}
+  .rc-big{font-family:"SF Pro Rounded",ui-rounded,-apple-system,system-ui,sans-serif;font-weight:800;
+    font-size:46px;line-height:1;letter-spacing:-.02em;transition:color .25s;
+    font-variant-numeric:tabular-nums}
+  .rc-big .sl{font-weight:300;font-size:.6em;opacity:.5;padding:0 3px}
+  .rc-big .u{font-size:13px;font-weight:600;opacity:.55;margin-left:5px}
+  .rcard .badge{display:inline-flex;align-items:center;gap:4px;margin-top:10px;font-size:13px;font-weight:800;
+    padding:4px 12px;border-radius:99px;transition:background .25s,color .25s}
+  .rcard .pulse{margin-top:8px;font-size:14.5px;font-weight:700;color:#1A6E2E}
+  .rc-fine{margin-top:12px;font-size:11px;line-height:1.5;color:#6f6357;text-align:left}
+  .impx{text-align:center}
+  .impx .impt{font-size:19px;font-weight:700;color:#2a211c;margin-top:16px;letter-spacing:-.01em}
+  .impx .impp{font-size:13.5px;color:#7a6c61;line-height:1.5;margin:8px auto 0;max-width:34ch}
+  .rc-ctas .measure{display:block;background:#C0382F;color:#fff;font-size:15px;font-weight:700;text-align:center;
+    border-radius:13px;padding:13px;margin-top:14px}
+  .rc-ctas .anyway{display:block;text-align:center;margin-top:12px;font-size:13.5px;font-weight:500;color:#4a4039}
+  .rcard .tryit{margin-top:14px}
+  .rcard .tryit label{display:block;font-size:12.5px;font-weight:700;color:#7a6c61;margin-bottom:6px}
+  .rcard .tryit input[type=range]{width:100%;accent-color:#1A6E2E}
+  /* ---------- section 3: see your trend at a glance ---------- */
+  .trend{height:220vh;position:relative}
+  .trendprog{position:sticky;top:0;height:3px;width:0;background:#1A6E2E;z-index:4;transition:background .25s}
+  .trendpin{position:sticky;top:3px;min-height:100vh;display:flex;align-items:flex-start;justify-content:center;
+    gap:clamp(36px,6vw,90px);padding:max(24px,calc(50vh - 250px)) 24px 24px;flex-wrap:wrap}
+  .trend .copy{flex:0 1 520px;max-width:520px;text-align:left;align-self:stretch;
+    display:flex;flex-direction:column;justify-content:center}
+  .trend h2{font-size:clamp(38px,5.5vw,72px);line-height:.99;letter-spacing:-.025em;font-weight:700}
+  .trend h2 span{transition:color .25s}
+  .trend .lede{font-size:clamp(17px,2vw,20px);color:#7a6c61;margin:22px 0 0;max-width:44ch}
+  .trendpill{background:#1A6E2E;margin-top:26px;align-self:flex-start}
+  .tcard{flex:0 1 360px;background:#fffdfb;border:1px solid #e7ddd2;border-radius:20px;padding:20px;
+    box-shadow:0 0 16px 3px rgba(108,78,52,.20),0 0 44px 12px rgba(108,78,52,.09)}
+  .tcard .chart{position:relative;background:#fff;border:1px solid #e3d6c6;border-radius:13px;padding:12px;overflow:hidden}
+  .tcard .band{position:absolute;left:12px;right:12px;top:44px;height:38px;background:#E7F0E8;border-radius:5px}
+  .tcard svg{position:relative;display:block;width:100%;height:auto}
+  .tcard .days{display:flex;justify-content:space-between;font-size:11px;color:#9a8d80;margin-top:8px;padding:0 4px}
+  .tcard .days span{transition:color .2s}
+  .tcard .legend{display:flex;gap:16px;justify-content:center;margin-top:10px;font-size:11.5px;font-weight:700}
+  .tcard .legend .ls{color:#B52121}.tcard .legend .ld{color:#1A6E2E}
+  .tcard .hrow{position:relative;border-radius:12px;overflow:hidden;margin-top:8px;min-height:62px;
+    opacity:0;transform:translateY(6px);transition:opacity .3s ease,transform .3s ease}
+  .tcard .hrow.on{opacity:1;transform:none}
+  .hdel{position:absolute;top:0;right:0;bottom:0;width:64px;background:#C0382F;color:#fff;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;
+    font-size:11px;font-weight:700;border-radius:12px}
+  .hdel svg{width:15px;height:16px}
+  .hmain{position:relative;display:flex;align-items:center;gap:10px;background:#fff;
+    border:1px solid #e3d6c6;border-radius:12px;padding:9px 12px;min-height:62px;
+    transition:transform .45s ease}
+  .hrow.swiped .hmain{transform:translateX(-72px)}
+  .hleft{flex:0 0 52px}
+  .hday{font-size:13px;font-weight:700;color:#2a211c}
+  .htime{font-size:10px;color:#9a8d80;margin-top:2px}
+  .hmid{flex:1}
+  .hv{font-family:"SF Pro Rounded",ui-rounded,-apple-system,system-ui,sans-serif;font-size:17px;
+    font-weight:800;font-variant-numeric:tabular-nums;letter-spacing:-.01em}
+  .hv .hu{font-size:9px;font-weight:600;color:#9a8d80;margin-left:3px;letter-spacing:0}
+  .hp{font-size:11px;font-weight:700;color:#1A6E2E;margin-top:2px}
+  .hb{display:inline-flex;align-items:center;gap:3px;font-size:10.5px;font-weight:800;
+    padding:4px 10px;border-radius:99px;white-space:nowrap}
+  .chev{color:#c9b9a6;font-size:16px;font-weight:700}
+  @media (max-width:820px){
+    .trendpin{flex-direction:column;justify-content:flex-start;gap:40px;padding-top:9vh}
+    .trend .copy{order:-1;text-align:center;align-self:center;display:block}
+    .trend .lede{margin:22px auto 0}
+    .tcard{align-self:center}
+  }
+  @media (max-width:820px) and (max-height:740px){
+    .rc-big{font-size:36px}
+    .rcard{padding:14px}
+    .rc-read{padding:12px 12px 10px}
+    .rc-fine{font-size:10px}
+    .sev .lede{min-height:0}
+    .sevpin{padding-top:4vh}
+  }
+  @media (max-width:820px){
+    .sevpin{flex-direction:column;justify-content:flex-start;gap:40px;padding-top:9vh}
+    .sev .copy{order:-1;text-align:center;align-self:center;display:block}
+    .sev .lede{margin:22px auto 0}
+    .rcard{align-self:center}
+  }
+
+
+  /* ---------- section 4: FAQ + close ---------- */
+  .closesec{min-height:100vh;display:flex;align-items:center;justify-content:center;
+    gap:clamp(36px,5vw,80px);padding:90px 24px 60px;flex-wrap:wrap}
+  .fcard{flex:0 1 480px;background:#fffdfb;border:1px solid #e7ddd2;border-radius:20px;padding:10px 26px;
+    box-shadow:0 0 16px 3px rgba(108,78,52,.20),0 0 44px 12px rgba(108,78,52,.09);
+    -webkit-user-select:text;user-select:text}
+  .faqhead{font-size:13px;font-weight:800;letter-spacing:.12em;color:#a3917f;margin:16px 0 10px;text-transform:uppercase}
+  .fcard details{border-bottom:1px dashed #e7ddd2;padding:15px 0}
+  .fcard details:last-child{border-bottom:0}
+  .fcard summary{font-size:15.5px;font-weight:700;cursor:pointer;list-style:none;
+    display:flex;justify-content:space-between;align-items:center;gap:12px}
+  .fcard summary::-webkit-details-marker{display:none}
+  .fcard summary::after{content:"+";font-size:20px;color:#9a8d80;font-weight:400;flex:0 0 auto;
+    transition:transform .3s ease}
+  .fcard details.expanded summary::after{transform:rotate(45deg)}
+  .acoll{display:grid;grid-template-rows:0fr;transition:grid-template-rows .35s ease}
+  .acoll>.acl{overflow:hidden;min-height:0}
+  .fcard details.expanded .acoll{grid-template-rows:1fr}
+  .fcard details p{font-size:14px;color:#7a6c61;margin-top:9px;line-height:1.6;max-width:58ch}
+  .fcard details a{color:#1A6E2E;font-weight:600}
+  .verdict{font-family:"New York","Iowan Old Style",Georgia,serif;color:#1A6E2E;font-weight:600;font-size:15.5px}
+  .closec{flex:0 1 480px;text-align:center}
+  .closec h2{font-size:clamp(34px,4.5vw,56px);line-height:1.02;letter-spacing:-.025em;font-weight:700}
+  .closec h2 .accent{color:#B52121}
+  .closetrust{font-size:16px;color:#7a6c61;margin-top:16px;font-weight:600}
+  .lockrow{display:flex;align-items:center;justify-content:center;gap:26px;margin-top:30px;flex-wrap:wrap}
+  .lk{display:inline-flex;align-items:center;gap:11px}
+  .lk img{height:38px;width:auto;cursor:pointer}
+  .lk img.plunge{animation:plunge .9s cubic-bezier(.34,1.3,.5,1)}
+  @keyframes plunge{0%{transform:none}32%{transform:translateY(32px) scale(.93)}
+    60%{transform:translateY(-7px)}80%{transform:translateY(3px)}100%{transform:none}}
+  .lk .wm{font-family:"New York","Iowan Old Style",Georgia,serif;font-weight:600;font-size:34px;
+    color:#C0382F;letter-spacing:-.01em;line-height:1}
+  .vrule{width:1px;height:40px;background:rgba(42,33,28,.15)}
+
+  /* ---------- footer ---------- */
+  .foot{max-width:1140px;margin:0 auto;padding:28px 24px 40px;border-top:1px solid rgba(42,33,28,.12);
+    -webkit-user-select:text;user-select:text}
+  .foot-row{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:12px}
+  .foot-row .wm{font-family:"New York","Iowan Old Style",Georgia,serif;font-size:21px;font-weight:600;color:#B52121}
+  .foot-row nav{display:flex;gap:24px;font-size:13.5px;flex-wrap:wrap}
+  .foot-row nav a{color:#4a4039;text-decoration:none;font-weight:600}
+  .foot-fine{font-size:11.5px;color:#6f6357;line-height:1.65;margin-top:18px;max-width:90ch}
+  .foot-c{font-size:11.5px;color:#6f6357;margin-top:14px}
+</style>
+</head>
+<body>
+
+<canvas id="pond" aria-hidden="true"></canvas>
+<div id="grain" aria-hidden="true"></div>
+
+
+<main>
+
+  <!-- ============ SECTION 1 · HERO ============ -->
+  <section class="hero">
+    <div class="copy">
+      <h1>One Photo.<br><span class="accent serif">Logged.</span></h1>
+      <p class="lede">Take a photo of your blood pressure monitor and Coraly does the rest. No typing, no notebook.</p>
+      <div class="ctarow">
+        <a class="applepill" href="https://apps.apple.com/app/id6778913380"><span class="a">&#63743;</span><span class="t"><small>Download on the</small>App Store</span></a>
+        <p class="herotrust">Free. Private. Calm.</p>
+      </div>
+      <p class="newchip">New on the App Store</p>
+    </div>
+    <div class="scrollcue" id="scrollcue" aria-hidden="true">&#8595;</div>
+    <div class="phoneframe" id="phoneframe">
+      <img src="assets/confirmation.png" width="1206" height="2622"
+           alt="Coraly’s Check Your Reading screen: 118 over 76 and pulse 64, each labelled Normal, with a Save to Apple Health button">
+    </div>
+  </section>
+
+  <!-- ============ SECTION 2 · KNOW WHAT YOUR NUMBERS MEAN / CATCHES A BAD READING ============ -->
+  <section class="sev" id="sevdemo">
+    <div class="sevprog" id="sev-prog"></div>
+    <div class="sevpin">
+      <div class="rcard" id="rcard">
+        <div class="rc-read" id="sev-read">
+          <div class="rc-big" id="sev-bp">118<span class="sl">/</span>76<span class="u">mmHg</span></div>
+          <div><span class="badge" id="sev-badge">&#10003; Normal</span></div>
+          <div class="pulse" id="sev-pulse">&#9829; 64 bpm</div>
+        </div>
+        <div class="rc-coll" id="sev-impw"><div class="cl">
+          <div class="impx">
+            <div class="impt">These Numbers Don&rsquo;t Add Up</div>
+            <p class="impp">The diastolic value is higher than the systolic, which isn&rsquo;t physically possible. This usually points to a monitor misread. Please measure again.</p>
+          </div>
+          <div class="rc-ctas"><span class="measure">Measure Again</span><span class="anyway">Save anyway</span></div>
+        </div></div>
+        <div class="tryit">
+          <label for="sev-sys">Or drag it yourself</label>
+          <input type="range" id="sev-sys" min="108" max="174" value="118" step="1">
+        </div>
+        <p class="rc-fine">The Normal, Elevated and High labels are based on general population guidelines and may not reflect what is healthy for you. Coraly does not provide diagnosis or treatment.</p>
+      </div>
+      <div class="copy">
+        <h2 id="sev-head">Know what your<br><span id="sev-accent" style="color:#1A6E2E">numbers mean.</span></h2>
+        <p class="lede" id="sev-sub">Calm, colour-coded severity. Every reading clearly labelled, so you know what it means at a glance.</p>
+        <a class="applepill sevpill" href="https://apps.apple.com/app/id6778913380"><span class="a">&#63743;</span><span class="t"><small>Download on the</small>App Store</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SECTION 3 · SEE YOUR TREND AT A GLANCE ============ -->
+  <section class="trend" id="trenddemo">
+    <div class="trendprog" id="tr-prog"></div>
+    <div class="trendpin">
+      <div class="copy">
+        <h2>See your trend<br><span id="tr-accent" style="color:#1A6E2E">at a glance.</span></h2>
+        <p class="lede">Your full history, easy to scan, always free.</p>
+        <a class="applepill trendpill" id="tr-pill" href="https://apps.apple.com/app/id6778913380"><span class="a">&#63743;</span><span class="t"><small>Download on the</small>App Store</span></a>
+      </div>
+      <div class="tcard" id="tcard">
+        <div class="chart">
+          <div class="band"></div>
+          <svg viewBox="0 0 280 144">
+            <polyline id="tr-sys" points="12,48 33.3,55 54.7,68 76,62 97.3,56 118.7,66 140,72 161.3,69 182.7,60 204,67 225.3,76 246.7,73 268,66" fill="none" stroke="#B52121" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+            <polyline id="tr-dia" points="12,94 33.3,98 54.7,106 76,102 97.3,98 118.7,105 140,107 161.3,106 182.7,100 204,105 225.3,107 246.7,106 268,101" fill="none" stroke="#1A6E2E" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle id="tr-sdot" cx="268" cy="66" r="4.5" fill="#B52121"/>
+            <circle id="tr-ddot" cx="268" cy="101" r="4.5" fill="#1A6E2E"/>
+          </svg>
+        </div>
+        <div class="days" id="tr-days"><span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span><span>Sun</span></div>
+        <div class="legend"><span class="ls">&#9644; Systolic</span><span class="ld">&#9644; Diastolic</span></div>
+        <div class="hrow" id="tr-r0">
+          <div class="hmain"><div class="hleft"><div class="hday"></div><div class="htime"></div></div><div class="hmid"><div class="hv"></div><div class="hp"></div></div><span class="hb"></span><span class="chev">&#8250;</span></div>
+        </div>
+        <div class="hrow" id="tr-r1">
+          <div class="hdel"><svg viewBox="0 0 15 16" fill="none" stroke="#fff" stroke-width="1.4" stroke-linecap="round"><path d="M1.5 3.5h12M5 3.5V2.2c0-.4.3-.7.7-.7h3.6c.4 0 .7.3.7.7v1.3M3 3.5l.8 10.3c0 .4.3.7.7.7h6c.4 0 .7-.3.7-.7L12 3.5M6 6.5v5M9 6.5v5"/></svg>Delete</div>
+          <div class="hmain"><div class="hleft"><div class="hday"></div><div class="htime"></div></div><div class="hmid"><div class="hv"></div><div class="hp"></div></div><span class="hb"></span><span class="chev">&#8250;</span></div>
+        </div>
+        <div class="hrow" id="tr-r2">
+          <div class="hmain"><div class="hleft"><div class="hday"></div><div class="htime"></div></div><div class="hmid"><div class="hv"></div><div class="hp"></div></div><span class="hb"></span><span class="chev">&#8250;</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SECTION 4 · FAQ + CLOSE ============ -->
+  <section class="closesec">
+    <div class="fcard" id="fcard">
+      <div class="faqhead">FAQ</div>
+      <details open><summary>What if Coraly misreads my monitor?</summary><div class="acoll"><div class="acl"><p><span class="verdict">You&rsquo;ll catch it.</span> You always see the numbers next to the photo they came from before anything is saved. One tap corrects a digit, and impossible readings are flagged before they can scare you.</p></div></div></details>
+      <details><summary>Is Coraly really free?</summary><div class="acoll"><div class="acl"><p><span class="verdict">Yes.</span> Photo logging, your full history, charts, reminders and Apple Health saving are free, with no ads, and will stay that way. If we ever add paid features, they will be additions, never things taken away.</p></div></div></details>
+      <details><summary>Can Coraly take my blood pressure without a cuff?</summary><div class="acoll"><div class="acl"><p><span class="verdict">No.</span> No app can do that reliably, and Coraly will never pretend to. It logs readings from the validated monitor you already own. It never guesses numbers from your finger or your camera.</p></div></div></details>
+      <details><summary>Which monitors does Coraly work with?</summary><div class="acoll"><div class="acl"><p><span class="verdict">The one you already own.</span> Coraly is designed to read arm and wrist monitors with a digital display, and detection keeps improving with every update. No pairing, no Bluetooth, nothing new to buy.</p></div></div></details>
+      <details><summary>Where do my readings and photos go?</summary><div class="acoll"><div class="acl"><p><span class="verdict">Nowhere.</span> Readings live on your iPhone and in your Apple Health app. Photos are read on the device and never leave it unless you choose to send one to help improve accuracy. Read the full <a href="https://farah-h.github.io/coraly-privacy-policy/">privacy policy</a>.</p></div></div></details>
+      <details><summary>Who makes Coraly?</summary><div class="acoll"><div class="acl"><p><span class="verdict">One person.</span> Hi &#128075; I have to check my blood pressure every day as part of my own health routine, and I couldn&rsquo;t find an app that was calm, beautiful, free and synced properly with Apple Health. So I built one.</p><p>Questions, feedback and feature requests are always welcome at <a href="mailto:support.coraly@gmail.com">support.coraly@gmail.com</a>.</p></div></div></details>
+    </div>
+    <div class="closec">
+      <h2>Your readings deserve<br><span class="accent serif">a calmer home.</span></h2>
+      <p class="closetrust">Free. Private. Calm.</p>
+      <div class="lockrow">
+        <span class="lk"><img src="assets/drop-512.png" alt="" width="356" height="512" id="lkdrop" title="plop"><span class="wm">Coraly</span></span>
+        <span class="vrule" aria-hidden="true"></span>
+        <a class="applepill" href="https://apps.apple.com/app/id6778913380"><span class="a">&#63743;</span><span class="t"><small>Download on the</small>App Store</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="foot">
+    <div class="foot-row">
+      <span class="wm">Coraly</span>
+      <nav><a href="https://farah-h.github.io/coraly-privacy-policy/">Privacy Policy</a><a href="mailto:support.coraly@gmail.com">support.coraly@gmail.com</a></nav>
+    </div>
+    <p class="foot-fine">Coraly helps you record and track blood pressure readings. It is not a medical device and does not provide diagnosis or treatment. The Low, Normal, Elevated, High and Very High labels are based on general population guidelines and may not reflect what is healthy for you. Always consult a clinician about your blood pressure and your health. Apple, Apple Health and the Apple logo are trademarks of Apple Inc.</p>
+    <p class="foot-c">&copy; 2026 Farah Hassan</p>
+  </footer>
+
+</main>
+
+<script>
+(function(){
+  const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const canvas = document.getElementById('pond');
+
+  /* ============ the canonical pond (LOVED · day) ============ */
+  if (reduced){ canvas.remove(); return; }
+  const gl = canvas.getContext('webgl',{alpha:false,antialias:false,depth:false,stencil:false});
+  if (!gl){ canvas.remove(); return; }
+
+  let dead = false;
+  canvas.addEventListener('webglcontextlost', e=>{ e.preventDefault(); dead = true; canvas.remove(); });
+
+  const VS='attribute vec2 aPos;varying vec2 vUv;void main(){vUv=aPos*.5+.5;gl_Position=vec4(aPos,0.,1.);}';
+  const SIM='precision mediump float;varying vec2 vUv;uniform sampler2D uCurr,uPrev;uniform vec2 uRes;uniform vec4 uDrops[8];uniform int uN;uniform vec4 uObs;uniform float uLvl;uniform vec4 uObs2;uniform float uLvl2;uniform vec4 uObs3;uniform float uLvl3;uniform vec4 uObs4;uniform float uLvl4;uniform float uDamp;'+
+    'void main(){vec2 px=1.0/uRes;'+
+    'float l=texture2D(uCurr,vUv-vec2(px.x,0.)).r,r=texture2D(uCurr,vUv+vec2(px.x,0.)).r,'+
+    'u=texture2D(uCurr,vUv+vec2(0.,px.y)).r,d=texture2D(uCurr,vUv-vec2(0.,px.y)).r,'+
+    'p=texture2D(uPrev,vUv).r;'+
+    'float h=(l+r+u+d)*0.5-p;h=(h-0.5)*uDamp+0.5;if(abs(h-0.5)<0.0012)h=0.5;'+
+    'for(int i=0;i<8;i++){if(i>=uN)break;float dist=distance(vUv,uDrops[i].xy);'+
+    'h+=uDrops[i].z*exp(-dist*dist/(uDrops[i].w*uDrops[i].w));}'+
+    'if(vUv.x>uObs.x&&vUv.x<uObs.z&&vUv.y>uObs.y&&vUv.y<uObs.w)h=uLvl;'+
+    'if(vUv.x>uObs2.x&&vUv.x<uObs2.z&&vUv.y>uObs2.y&&vUv.y<uObs2.w)h=uLvl2;'+
+    'if(vUv.x>uObs3.x&&vUv.x<uObs3.z&&vUv.y>uObs3.y&&vUv.y<uObs3.w)h=uLvl3;'+
+    'if(vUv.x>uObs4.x&&vUv.x<uObs4.z&&vUv.y>uObs4.y&&vUv.y<uObs4.w)h=uLvl4;'+
+    'gl_FragColor=vec4(clamp(h,0.,1.),0.,0.,1.);}';
+  const DRAW='precision mediump float;varying vec2 vUv;uniform sampler2D uH;uniform vec2 uRes;uniform float uGlint;'+
+    'void main(){vec2 px=1.0/uRes;'+
+    'float l=texture2D(uH,vUv-vec2(px.x,0.)).r,r=texture2D(uH,vUv+vec2(px.x,0.)).r,'+
+    'u=texture2D(uH,vUv+vec2(0.,px.y)).r,d=texture2D(uH,vUv-vec2(0.,px.y)).r;'+
+    'float gx=(r-l),gy=(u-d);vec3 n=normalize(vec3(-gx*30.0,-gy*30.0,1.0));'+
+    'float diff=clamp(dot(n,normalize(vec3(-.25,.45,.85))),0.,1.);'+
+    'vec3 col=mix(vec3(.910,.850,.780),vec3(.965,.922,.882),diff);'+
+    'col=mix(col,vec3(.78,.70,.62),pow(1.0-diff,2.0)*.35);'+
+    'float spec=pow(clamp(dot(reflect(normalize(vec3(.25,-.45,-.85)),n),vec3(0.,0.,1.)),0.,1.),34.0);'+
+    'col+=vec3(1.0,.99,.97)*spec*uGlint;'+
+    'col+=vec3(.76,.34,.27)*spec*spec*uGlint*0.43;'+
+    'float vig=smoothstep(1.25,.35,distance(vUv,vec2(.5,.45)));'+
+    'col=mix(vec3(.910,.850,.780)*1.02,col,vig);'+
+    'gl_FragColor=vec4(col,1.0);}';
+  function sh(t,s){const x=gl.createShader(t);gl.shaderSource(x,s);gl.compileShader(x);return x;}
+  function prog(fs){const p=gl.createProgram();gl.attachShader(p,sh(gl.VERTEX_SHADER,VS));gl.attachShader(p,sh(gl.FRAGMENT_SHADER,fs));gl.linkProgram(p);return p;}
+  const simP=prog(SIM),drawP=prog(DRAW);
+  const quad=gl.createBuffer();gl.bindBuffer(gl.ARRAY_BUFFER,quad);
+  gl.bufferData(gl.ARRAY_BUFFER,new Float32Array([-1,-1,1,-1,-1,1,1,1]),gl.STATIC_DRAW);
+  function bindQuad(p){const lo=gl.getAttribLocation(p,'aPos');gl.enableVertexAttribArray(lo);gl.vertexAttribPointer(lo,2,gl.FLOAT,false,0,0);}
+  const SW=220,SH=160;
+  const extHF=gl.getExtension('OES_texture_half_float');
+  if (!extHF){ canvas.remove(); return; }   /* no half-float: skip the pond rather than degrade */
+  gl.getExtension('OES_texture_half_float_linear');
+  const texType=extHF.HALF_FLOAT_OES;
+  function target(){const tx=gl.createTexture();gl.bindTexture(gl.TEXTURE_2D,tx);
+    gl.texImage2D(gl.TEXTURE_2D,0,gl.RGBA,SW,SH,0,gl.RGBA,texType,null);
+    gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MIN_FILTER,gl.LINEAR);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MAG_FILTER,gl.LINEAR);
+    gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_S,gl.CLAMP_TO_EDGE);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_T,gl.CLAMP_TO_EDGE);
+    const fb=gl.createFramebuffer();gl.bindFramebuffer(gl.FRAMEBUFFER,fb);
+    gl.framebufferTexture2D(gl.FRAMEBUFFER,gl.COLOR_ATTACHMENT0,gl.TEXTURE_2D,tx,0);return{tx,fb};}
+  let A=target();
+  if(gl.checkFramebufferStatus(gl.FRAMEBUFFER)!==gl.FRAMEBUFFER_COMPLETE){ canvas.remove(); return; }
+  let B=target(),C=target();
+  [A,B,C].forEach(x=>{gl.bindFramebuffer(gl.FRAMEBUFFER,x.fb);gl.clearColor(0.5,0,0,1);gl.clear(gl.COLOR_BUFFER_BIT);});
+  const dpr=Math.min(1.5,devicePixelRatio||1);
+  function size(){canvas.width=innerWidth*dpr;canvas.height=innerHeight*dpr;}
+  size();addEventListener('resize',size);
+
+  let drops=[];
+  function drop(u,v,s,rad){drops.push([u,v,s,rad]);if(drops.length>8)drops.shift();}
+  function dropPx(x,y,s,rad){drop(x/innerWidth,1-y/innerHeight,s,rad);}
+
+  const TUNE = { depth:.12, period:6000, damp:.973, glint:.28, rainMs:2200, crown:1 };   /* approved 12 Jun 2026 */
+  function dropLevel(now){
+    const t = now % TUNE.period;
+    if (t < 70) return 0.5 - TUNE.depth * (t / 70);
+    const x = (t - 70) / 1000;
+    return 0.5 - TUNE.depth * Math.exp(-x * 3.0) * Math.cos(x * 12.0);
+  }
+  const pfEl = document.getElementById('phoneframe');
+  const rcEl = document.getElementById('rcard');
+  const tcEl = document.getElementById('tcard');
+  const fcEl = document.getElementById('fcard');
+  const uO=gl.getUniformLocation(simP,'uObs');
+  const uO2=gl.getUniformLocation(simP,'uObs2');
+  const uL2=gl.getUniformLocation(simP,'uLvl2');
+  const uO3=gl.getUniformLocation(simP,'uObs3');
+  const uL3=gl.getUniformLocation(simP,'uLvl3');
+  const uO4=gl.getUniformLocation(simP,'uObs4');
+  const uL4=gl.getUniformLocation(simP,'uLvl4');
+  const uL=gl.getUniformLocation(simP,'uLvl');
+  const uDampL=gl.getUniformLocation(simP,'uDamp');
+  const uGlintL=gl.getUniformLocation(drawP,'uGlint');
+  const uD=gl.getUniformLocation(simP,'uDrops'),uN=gl.getUniformLocation(simP,'uN'),
+        uR=gl.getUniformLocation(simP,'uRes'),uC=gl.getUniformLocation(simP,'uCurr'),
+        uP=gl.getUniformLocation(simP,'uPrev'),uH=gl.getUniformLocation(drawP,'uH'),
+        uR2=gl.getUniformLocation(drawP,'uRes');
+  (function frame(){
+    if(dead) return;
+    if(!document.hidden){
+      gl.useProgram(simP);bindQuad(simP);
+      gl.bindFramebuffer(gl.FRAMEBUFFER,C.fb);gl.viewport(0,0,SW,SH);
+      gl.activeTexture(gl.TEXTURE0);gl.bindTexture(gl.TEXTURE_2D,A.tx);gl.uniform1i(uC,0);
+      gl.activeTexture(gl.TEXTURE1);gl.bindTexture(gl.TEXTURE_2D,B.tx);gl.uniform1i(uP,1);
+      gl.uniform2f(uR,SW,SH);
+      const f=new Float32Array(32);for(let i=0;i<drops.length;i++)f.set(drops[i],i*4);
+      if (pfEl){
+        const r = pfEl.getBoundingClientRect(), inset = 6;
+        gl.uniform4f(uO, (r.left+inset)/innerWidth, 1-(r.bottom-inset)/innerHeight,
+                         (r.right-inset)/innerWidth, 1-(r.top+inset)/innerHeight);
+      } else gl.uniform4f(uO, 2., 2., 3., 3.);
+      /* the cards: same impact-drop physics as the phone, a third of a cycle apart */
+      function body(el, uO_, uL_, phase){
+        gl.uniform1f(uL_, dropLevel(performance.now() + phase));
+        if (el){
+          const r2 = el.getBoundingClientRect(), in2 = 6;
+          if (r2.bottom > 0 && r2.top < innerHeight)
+            return gl.uniform4f(uO_, (r2.left+in2)/innerWidth, 1-(r2.bottom-in2)/innerHeight,
+                                     (r2.right-in2)/innerWidth, 1-(r2.top+in2)/innerHeight);
+        }
+        gl.uniform4f(uO_, 2., 2., 3., 3.);
+      }
+      body(rcEl, uO2, uL2, TUNE.period/4);
+      body(tcEl, uO3, uL3, TUNE.period/2);
+      body(fcEl, uO4, uL4, 3*TUNE.period/4);
+      /* dropped from a low height, every 5s: a fast plunge through the surface, then a
+         damped rebound that rings down to rest. One strong travelling wavefront per drop. */
+      gl.uniform1f(uL, dropLevel(performance.now()));
+      gl.uniform1f(uDampL, TUNE.damp);
+      gl.uniform4fv(uD,f);gl.uniform1i(uN,drops.length);drops=[];
+      gl.drawArrays(gl.TRIANGLE_STRIP,0,4);
+      const t=B;B=A;A=C;C=t;
+      gl.useProgram(drawP);bindQuad(drawP);
+      gl.bindFramebuffer(gl.FRAMEBUFFER,null);gl.viewport(0,0,canvas.width,canvas.height);
+      gl.activeTexture(gl.TEXTURE0);gl.bindTexture(gl.TEXTURE_2D,A.tx);gl.uniform1i(uH,0);
+      gl.uniform2f(uR2,SW,SH);
+      gl.uniform1f(uGlintL, TUNE.glint);
+      gl.drawArrays(gl.TRIANGLE_STRIP,0,4);
+    }
+    requestAnimationFrame(frame);
+  })();
+
+  /* ambient rain — the pond is never frozen */
+  let lastRain = 0;
+  setInterval(()=>{
+    if (document.hidden) return;
+    const n = performance.now();
+    if (n - lastRain >= TUNE.rainMs){ lastRain = n; drop(Math.random(),Math.random(),.04+Math.random()*.05,.010+Math.random()*.005); }
+  },120);
+
+  /* splash-back: at the moment of each impact, a crown of droplets is thrown out around the
+     body and lands back a beat later — the chaotic half of a real splash, over the big ring.
+     Both floating bodies splash, half a cycle apart. */
+  const splashers = [{el:pfEl, phase:0, last:-1}, {el:rcEl, phase:TUNE.period/4, last:-1},
+                     {el:tcEl, phase:TUNE.period/2, last:-1}, {el:fcEl, phase:3*TUNE.period/4, last:-1}];
+  setInterval(()=>{
+    if (document.hidden) return;
+    const now = performance.now();
+    for (const s of splashers){
+      if (!s.el) continue;
+      const tp = now + s.phase, cyc = Math.floor(tp / TUNE.period);
+      if (cyc === s.last || (tp % TUNE.period) < 70) continue;
+      s.last = cyc;
+      const r = s.el.getBoundingClientRect();
+      if (r.bottom < 0 || r.top > innerHeight) continue;
+      const cx = r.left + r.width/2, cy = r.top + r.height/2;
+      for (let i = 0; i < 9; i++){
+        const edge = Math.random();
+        let x, y;
+        if (edge < .35){ x = r.left + r.width*Math.random(); y = r.bottom; }
+        else if (edge < .6){ x = r.left + r.width*Math.random(); y = r.top; }
+        else { x = Math.random() < .5 ? r.left : r.right; y = r.top + r.height*Math.random(); }
+        const a = Math.atan2(y - cy, x - cx), d = 14 + Math.random()*70;
+        setTimeout(()=> dropPx(x + Math.cos(a)*d, y + Math.sin(a)*d,
+                               (.09 + Math.random()*.13) * TUNE.crown, .008 + Math.random()*.004),
+                   30 + Math.random()*220);
+      }
+    }
+  }, 60);
+
+  /* DRAG · D1 baseline: gentle taps along the path */
+  let lastT=0;
+  addEventListener('pointermove',e=>{
+    const now=performance.now();
+    if(now-lastT>80){ lastT=now; dropPx(e.clientX,e.clientY,.10,.013); }
+  },{passive:true});
+
+
+  /* CLICK · C3 splash: a strike plus a crown of secondary droplets */
+  addEventListener('pointerdown',e=>{
+    if (e.target.closest('.rcard,.tcard,.fcard,.lk')) return;
+    dropPx(e.clientX,e.clientY,.5,.018);
+    for(let i=0;i<6;i++){
+      const a=Math.random()*6.283, r=46+Math.random()*54;
+      setTimeout(()=>dropPx(e.clientX+Math.cos(a)*r, e.clientY+Math.sin(a)*r,
+                            .12+Math.random()*.10, .009), 60+Math.random()*180);
+    }
+  },{passive:true});
+
+  /* delight 1: opening a question plops a droplet beside the card */
+  document.querySelectorAll('.fcard details').forEach(d=>{
+    d.addEventListener('toggle', ()=>{
+      if (!d.open || !fcEl) return;
+      const r = d.getBoundingClientRect(), c = fcEl.getBoundingClientRect();
+      const room = innerWidth - c.right;
+      const x = room > 46 ? c.right + 26 : Math.max(20, c.left - 26);
+      dropPx(x, r.top + 22, .12, .013);
+    });
+  });
+
+  /* delight 2: click the lockup drop and it performs its own name */
+  const lkDrop = document.getElementById('lkdrop');
+  if (lkDrop){
+    let busy = false;
+    lkDrop.addEventListener('pointerdown', ()=>{
+      if (busy) return; busy = true;
+      lkDrop.classList.add('plunge');
+      const r = lkDrop.getBoundingClientRect();
+      const cx = r.left + r.width/2, cy = r.bottom + 16;
+      setTimeout(()=>{
+        dropPx(cx, cy, .5, .018);
+        for(let i=0;i<6;i++){
+          const a=Math.random()*6.283, rad=40+Math.random()*50;
+          setTimeout(()=>dropPx(cx+Math.cos(a)*rad, cy+Math.sin(a)*rad,
+                                .12+Math.random()*.10, .009), 60+Math.random()*160);
+        }
+      }, 280);
+      setTimeout(()=>{ lkDrop.classList.remove('plunge'); busy = false; }, 950);
+    });
+  }
+})();
+
+/* section 2: scroll ride — the reading climbs as you scroll; past plausibility the
+   story turns to the bad-reading catch. Palette + card anatomy match the App Store
+   screenshots. Slider is the manual/accessible override. */
+(function(){
+  const $ = id => document.getElementById(id);
+  const demo = $('sevdemo'), prog = $('sev-prog'), head = $('sev-head'), sub = $('sev-sub'),
+        read = $('sev-read'), bp = $('sev-bp'), badge = $('sev-badge'), pulse = $('sev-pulse'),
+        impw = $('sev-impw'), sys = $('sev-sys'),
+        card = $('rcard');
+  if (!demo) return;
+  const SEV = {
+    normal:  {label:'\u2713 Normal',   c:'#1A6E2E', tint:'#E7F0E8', border:'#c6dcc8', bb:'#cfe6d0'},
+    elevated:{label:'\u26A0 Elevated', c:'#8F4B00', tint:'#F6EBDD', border:'#e3c79f', bb:'#efdcc2'},
+    high:    {label:'\u2191 High',     c:'#B52121', tint:'#F7E4E2', border:'#e3aaa6', bb:'#efc9c6'}
+  };
+  function render(s){
+    const imp = s >= 160;
+    /* the flagged example mirrors the app's sheet: diastolic higher than systolic */
+    const sv = imp ? 118 : s, dv = imp ? 126 : Math.round(s*0.55+8);
+    const k = s >= 140 ? 'high' : s >= 130 ? 'elevated' : 'normal', m = SEV[k];
+    bp.innerHTML = sv+'<span class="sl">/</span>'+dv+'<span class="u">mmHg</span>';
+    bp.style.color = imp ? '#B52121' : m.c;
+    read.style.background = imp ? '#F7E4E2' : m.tint;
+    read.style.borderColor = imp ? '#e3aaa6' : m.border;
+    /* sheet background: the card turns cream like the app's sheet when flagged */
+    card.style.background = imp ? '#F6EBE1' : '#fffdfb';
+    card.style.borderColor = imp ? '#e0d2c1' : '#e7ddd2';
+    badge.textContent = imp ? '\u21C8 Very High' : m.label;
+    badge.style.background = imp ? '#F9E3E1' : m.bb;
+    badge.style.color = imp ? '#B52121' : m.c;
+    badge.style.border = imp ? '1px solid #e3aaa6' : '1px solid transparent';
+    pulse.style.visibility = imp ? 'hidden' : 'visible';
+    impw.classList.toggle('on', imp);
+    if (+sys.value !== s) sys.value = s;
+    sys.style.accentColor = imp ? '#B52121' : m.c;
+    prog.style.background = imp ? '#B52121' : m.c;
+    const acc = document.getElementById('sev-accent');
+    if (acc) acc.style.color = m.c;
+    setHead(imp);
+  }
+  function setHead(imp){
+    if (head.dataset.s === (imp?'1':'0')) return;
+    head.dataset.s = imp?'1':'0';
+    head.style.opacity = 0;
+    setTimeout(()=>{
+      head.innerHTML = imp ? 'Catches a<br>bad reading.'
+                           : 'Know what your<br><span id="sev-accent">numbers mean.</span>';
+      sub.textContent = imp ? 'A faulty cuff shouldn\u2019t scare you.'
+        : 'Calm, colour-coded severity. Every reading clearly labelled, so you know what it means at a glance.';
+      head.style.opacity = 1;
+    }, 300);
+  }
+  let manual = -1;
+  function onScroll(){
+    const r = demo.getBoundingClientRect();
+    const total = r.height - innerHeight;
+    if (total <= 0) return;
+    const tt = Math.min(1, Math.max(0, -r.top / total));
+    prog.style.width = (tt*100)+'%';
+    render(manual >= 0 ? manual : Math.round(108 + tt*(174-108)));
+    manual = -1;
+  }
+  sys.addEventListener('input', e=>{ manual = +e.target.value; render(manual); });
+  addEventListener('scroll', onScroll, {passive:true});
+  addEventListener('resize', onScroll, {passive:true});
+  render(118); onScroll();
+})();
+
+/* section 3: a fortnight of readings, morning and evening, lands continuously as you
+   scroll — the line tip glides between points instead of jumping breakpoint to breakpoint.
+   Row styling mirrors screenshot 7. */
+(function(){
+  const $ = id => document.getElementById(id);
+  const demo = $('trenddemo'), prog = $('tr-prog');
+  if (!demo) return;
+  const N = 13, X = Array.from({length:N}, (_,i)=> 12 + i*(256/(N-1)));
+  /* Mon..Sun, AM/PM; y derived from values (sy = 84-(sys-110), dy = 112-(dia-70)*0.8) */
+  const D = [
+    {v:'146/92', p:90, sev:'high',     sy:48, dy:94,  dd:'Mon',   tm:'8:10 AM', day:0},
+    {v:'139/88', p:84, sev:'elevated', sy:55, dy:98,  dd:'Mon',   tm:'9:12 PM', day:0},
+    {v:'126/78', p:72, sev:'normal',   sy:68, dy:106, dd:'Tue',   tm:'7:48 AM', day:1},
+    {v:'132/82', p:78, sev:'elevated', sy:62, dy:102, dd:'Tue',   tm:'8:30 PM', day:1},
+    {v:'138/88', p:84, sev:'elevated', sy:56, dy:98,  dd:'Wed',   tm:'8:24 AM', day:2},
+    {v:'128/79', p:76, sev:'normal',   sy:66, dy:105, dd:'Wed',   tm:'9:05 PM', day:2},
+    {v:'122/76', p:68, sev:'normal',   sy:72, dy:107, dd:'Thu',   tm:'8:06 AM', day:3},
+    {v:'125/78', p:70, sev:'normal',   sy:69, dy:106, dd:'Thu',   tm:'8:47 PM', day:3},
+    {v:'134/85', p:80, sev:'elevated', sy:60, dy:100, dd:'Fri',   tm:'8:14 AM', day:4},
+    {v:'127/79', p:74, sev:'normal',   sy:67, dy:105, dd:'Fri',   tm:'8:42 PM', day:4},
+    {v:'118/76', p:66, sev:'normal',   sy:76, dy:107, dd:'Sat',   tm:'7:55 AM', day:5},
+    {v:'121/77', p:70, sev:'normal',   sy:73, dy:106, dd:'Sat',   tm:'8:18 PM', day:5},
+    {v:'128/84', p:80, sev:'elevated', sy:66, dy:101, dd:'Today', tm:'8:02 AM', day:6}
+  ];
+  const C = { normal:  {c:'#1A6E2E', bb:'#cfe6d0', ic:'\u2713', w:'Normal'},
+              elevated:{c:'#8F4B00', bb:'#efdcc2', ic:'\u26A0', w:'Elevated'},
+              high:    {c:'#B52121', bb:'#efc9c6', ic:'\u2191', w:'High'} };
+  const sys = $('tr-sys'), dia = $('tr-dia'), sd = $('tr-sdot'), dd = $('tr-ddot'),
+        days = $('tr-days').children,
+        rows = [$('tr-r0'), $('tr-r1'), $('tr-r2')];
+  const lerp = (a,b,f)=>a+(b-a)*f;
+  function render(p){              /* p: continuous 0..N-1 */
+    p = Math.max(0, Math.min(N-1, p));
+    const idx = Math.floor(p), f = p - idx;
+    /* full points up to idx, then a tip gliding toward the next point */
+    let sp = D.slice(0, idx+1).map((d,i)=>X[i]+','+d.sy);
+    let dp = D.slice(0, idx+1).map((d,i)=>X[i]+','+d.dy);
+    let tx = X[idx], tsy = D[idx].sy, tdy = D[idx].dy;
+    if (f > 0 && idx < N-1){
+      tx = lerp(X[idx], X[idx+1], f);
+      tsy = lerp(D[idx].sy, D[idx+1].sy, f);
+      tdy = lerp(D[idx].dy, D[idx+1].dy, f);
+      sp.push(tx+','+tsy); dp.push(tx+','+tdy);
+    }
+    sys.setAttribute('points', sp.join(' '));
+    dia.setAttribute('points', dp.join(' '));
+    sd.setAttribute('cx', tx); sd.setAttribute('cy', tsy); sd.setAttribute('opacity', 1);
+    dd.setAttribute('cx', tx); dd.setAttribute('cy', tdy); dd.setAttribute('opacity', 1);
+    const landed = idx + 1;
+    for (let i = 0; i < 7; i++) days[i].style.color = '#d8cabb';
+    for (let i = 0; i < landed; i++) days[D[i].day].style.color = '#4a4039';
+    for (let r = 0; r < 3; r++){
+      const i = landed - 1 - r, row = rows[r];
+      if (i >= 0){
+        const d = D[i], col = C[d.sev];
+        row.classList.add('on');
+        row.querySelector('.hday').textContent = d.dd;
+        row.querySelector('.htime').textContent = d.tm;
+        const hv = row.querySelector('.hv');
+        hv.innerHTML = d.v + '<span class="hu">mmHg</span>'; hv.style.color = col.c;
+        row.querySelector('.hp').innerHTML = '&#9829; ' + d.p + ' bpm';
+        const hb = row.querySelector('.hb'); hb.textContent = col.ic + ' ' + col.w;
+        hb.style.background = col.bb; hb.style.color = col.c;
+      } else row.classList.remove('on');
+    }
+  }
+  /* when the week completes, the middle row performs one swipe-to-delete and returns */
+  let swipeShown = false, swipeT1 = null, swipeT2 = null;
+  function deleteDemo(landed){
+    const row = rows[1];
+    if (landed >= N && !swipeShown){
+      swipeShown = true;
+      swipeT1 = setTimeout(()=> row.classList.add('swiped'), 700);
+      swipeT2 = setTimeout(()=> row.classList.remove('swiped'), 2600);
+    } else if (landed < N - 3 && swipeShown){
+      swipeShown = false;
+      clearTimeout(swipeT1); clearTimeout(swipeT2);
+      row.classList.remove('swiped');
+    }
+  }
+  function onScroll(){
+    const r = demo.getBoundingClientRect(), total = r.height - innerHeight;
+    if (total <= 0) return;
+    const tt = Math.min(1, Math.max(0, -r.top / total));
+    prog.style.width = (tt*100)+'%';
+    render(tt*(N-1));
+    deleteDemo(Math.floor(tt*(N-1)) + 1);
+  }
+  addEventListener('scroll', onScroll, {passive:true});
+  addEventListener('resize', onScroll, {passive:true});
+  render(0); onScroll();
+})();
+
+/* hero scroll cue fades once the journey starts */
+(function(){
+  const c = document.getElementById('scrollcue');
+  if (!c) return;
+  addEventListener('scroll', ()=>{ c.style.opacity = scrollY > 60 ? 0 : 1; }, {passive:true});
+})();
+
+/* FAQ: smooth accordion — answers unfold/fold instead of popping */
+(function(){
+  document.querySelectorAll('.fcard details').forEach(d=>{
+    if (d.open) d.classList.add('expanded');
+    d.querySelector('summary').addEventListener('click', e=>{
+      e.preventDefault();
+      if (d.classList.contains('expanded')){
+        d.classList.remove('expanded');
+        setTimeout(()=>{ d.open = false; }, 370);
+      } else {
+        d.open = true;
+        requestAnimationFrame(()=>requestAnimationFrame(()=> d.classList.add('expanded')));
+      }
+    });
+  });
+})();
+</script>
+</body>
+</html>
