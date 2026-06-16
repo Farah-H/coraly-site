@@ -1,0 +1,14 @@
+{
+  "name": "coraly-site",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Static landing site for Coraly (getcoraly.app). The site is plain HTML/CSS/JS and needs no build step; this package.json exists only to run the dev test suite in tests/.",
+  "scripts": {
+    "test": "node tests/landing.test.js",
+    "shots": "node tests/visual/render-progressions.js"
+  },
+  "devDependencies": {
+    "jsdom": "^29.1.1",
+    "puppeteer-core": "^23.0.0"
+  }
+}

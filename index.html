@@ -5,13 +5,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#F3E7D9">
 <title>Coraly | Log Blood Pressure from a Photo</title>
-<link rel="icon" type="image/svg+xml" href="/assets/icon.svg">
-<link rel="icon" type="image/png" sizes="96x96" href="/assets/icon-96.png">
-<link rel="icon" type="image/png" sizes="48x48" href="/assets/icon-48.png">
-<link rel="icon" type="image/png" sizes="32x32" href="/assets/icon-32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="/assets/icon-16.png">
-<link rel="icon" type="image/x-icon" href="/assets/favicon.ico">
-<link rel="apple-touch-icon" sizes="180x180" href="/assets/icon-180.png">
+<link rel="icon" type="image/svg+xml" href="assets/icon.svg">
+<link rel="icon" type="image/png" sizes="96x96" href="assets/icon-96.png">
+<link rel="icon" type="image/png" sizes="48x48" href="assets/icon-48.png">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/icon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="assets/icon-16.png">
+<link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+<link rel="apple-touch-icon" sizes="180x180" href="assets/icon-180.png">
 <meta name="description" content="Snap a photo of your home monitor and Coraly logs the reading for you. No ads, no account, and your history is always free.">
 <meta property="og:title" content="Coraly: One Photo. Logged.">
 <meta property="og:description" content="Snap a photo of your home monitor and Coraly logs the reading for you. No ads, no account, and your history is always free.">
@@ -51,7 +51,7 @@
     padding:clamp(7px,1.1vh,11px);flex:0 0 auto;
     box-shadow:0 0 16px 3px rgba(108,78,52,.20),0 0 44px 12px rgba(108,78,52,.09)}
   .phoneframe img{display:block;width:100%;height:auto;border-radius:clamp(24px,4vh,36px)}
-  @media (max-width:900px){
+  @media (max-width:1199px){
     .hero{flex-direction:column;justify-content:center;gap:44px;padding-top:72px}
     .hero .copy{text-align:center}
     .lede{margin:24px auto 32px}
@@ -80,7 +80,7 @@
   .scrollcue{position:absolute;bottom:26px;left:50%;transform:translateX(-50%);font-size:20px;
     color:#6f6357;animation:cuebob 2.4s ease-in-out infinite;transition:opacity .4s;pointer-events:none}
   @keyframes cuebob{0%,100%{transform:translate(-50%,0)}50%{transform:translate(-50%,8px)}}
-  @media (max-width:900px){ .scrollcue{display:none} }
+  @media (max-width:1199px){ .scrollcue{display:none} }
   .herotrust{margin:0;font-size:14px;font-weight:600;color:#6f6357}
 
   /* ---------- section 2: know what your numbers mean / catches a bad reading ----------
@@ -139,7 +139,7 @@
   .tcard .chart{position:relative;background:#fff;border:1px solid #e3d6c6;border-radius:13px;padding:12px;overflow:hidden}
   .tcard .band{position:absolute;left:12px;right:12px;top:44px;height:38px;background:#E7F0E8;border-radius:5px}
   .tcard svg{position:relative;display:block;width:100%;height:auto}
-  .tcard .days{display:flex;justify-content:space-between;font-size:11px;color:#7c6f63;margin-top:8px;padding:0 4px}
+  .tcard .days{display:flex;justify-content:space-between;font-size:11px;color:#726658;margin-top:8px;padding:0 4px}
   .tcard .days span{transition:color .2s}
   .tcard .legend{display:flex;gap:16px;justify-content:center;margin-top:10px;font-size:11.5px;font-weight:700}
   .tcard .legend .ls{color:#B52121}.tcard .legend .ld{color:#1A6E2E}
@@ -156,22 +156,22 @@
   .hrow.swiped .hmain{transform:translateX(-72px)}
   .hleft{flex:0 0 52px}
   .hday{font-size:13px;font-weight:700;color:#2a211c}
-  .htime{font-size:10px;color:#7c6f63;margin-top:2px}
+  .htime{font-size:10px;color:#726658;margin-top:2px}
   .hmid{flex:1}
   .hv{font-family:"SF Pro Rounded",ui-rounded,-apple-system,system-ui,sans-serif;font-size:17px;
     font-weight:800;font-variant-numeric:tabular-nums;letter-spacing:-.01em}
-  .hv .hu{font-size:9px;font-weight:600;color:#7c6f63;margin-left:3px;letter-spacing:0}
+  .hv .hu{font-size:9px;font-weight:600;color:#726658;margin-left:3px;letter-spacing:0}
   .hp{font-size:11px;font-weight:700;color:#1A6E2E;margin-top:2px}
   .hb{display:inline-flex;align-items:center;gap:3px;font-size:10.5px;font-weight:800;
     padding:4px 10px;border-radius:99px;white-space:nowrap}
-  .chev{color:#c9b9a6;font-size:16px;font-weight:700}
-  @media (max-width:900px){
+  .chev{color:#726658;font-size:16px;font-weight:700}
+  @media (max-width:1199px){
     .trendpin{flex-direction:column;justify-content:flex-start;gap:18px;padding-top:calc(env(safe-area-inset-top,0px) + 12px)}
     .trend .copy{order:-1;text-align:center;align-self:center;display:block;flex:0 0 auto}
     .trend .lede{margin:22px auto 0}
     .tcard{align-self:center;flex:0 0 auto;max-width:92vw}
   }
-  @media (max-width:900px){
+  @media (max-width:1199px){
     .sevpin{flex-direction:column;justify-content:flex-start;gap:18px;padding-top:calc(env(safe-area-inset-top,0px) + 12px)}
     .sev .copy{order:-1;text-align:center;align-self:center;display:block;flex:0 0 auto}
     .sev .lede{margin:22px auto 0}
@@ -179,19 +179,98 @@
   }
 
 
+  /* ---------- "once it's in": vertical feature states, REAL app screenshots ---------- */
+  .once{position:relative}
+  .ost{min-height:100vh;display:flex;align-items:center;justify-content:center;
+    padding:clamp(60px,9vh,110px) clamp(22px,5vw,72px)}
+  .obridge{max-width:760px;text-align:center}
+  .obridge h2 .accent{color:#B52121}
+  /* a quiet preview of the five demos to come — builds anticipation without spoiling them */
+  .obridge-teaser{display:inline-flex;flex-wrap:wrap;justify-content:center;margin-top:26px;
+    font-size:12px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:#74604d}
+  .obridge-teaser span{padding:2px 15px;border-left:1px solid #c2ad93;line-height:1.2}
+  .obridge-teaser span:first-child{border-left:0}
+  /* keep the subtitle on a single line on desktop (no lone "lands." on its own row) */
+  @media (min-width:1200px){ .obridge p{max-width:none;white-space:nowrap} }
+  /* the bridge's second line is a WORD SWAP: "working for you." cycles to the feature words on scroll (desktop).
+     Without JS (mobile / reduced motion) only the first word shows, so it reads as a normal headline. */
+  .bridge-swap{display:block;position:relative;height:1.18em;overflow:hidden}
+  .bridge-swap .bw{position:absolute;left:0;right:0;top:0;line-height:1.18;color:#B52121;white-space:nowrap}
+  .bridge-swap .bw:not(:first-child){opacity:0}
+  .obridge h2{font-size:clamp(34px,5.4vw,62px);line-height:1.03;letter-spacing:-.025em;font-weight:500}
+  .obridge p{font-size:clamp(17px,2vw,21px);color:#6f6357;margin:20px auto 0;max-width:40ch}
+  .orow{display:flex;align-items:center;justify-content:center;gap:clamp(40px,7vw,100px);max-width:1080px;width:100%}
+  .orow.rev{flex-direction:row-reverse}
+  .ocopy{flex:0 1 460px;max-width:460px;text-align:left}
+  .okick{font-size:13px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:#B52121;margin-bottom:14px}
+  .ocopy h2{font-size:clamp(34px,4.6vw,60px);line-height:1;letter-spacing:-.025em;font-weight:700}
+  .ocopy h2 .a{color:#1A6E2E}
+  .ocopy p{font-size:clamp(17px,2vw,20px);color:#6f6357;margin-top:18px;max-width:34ch}
+  .once .phoneframe{align-self:center}
+  /* DESKTOP flood-fill: panels stack full-screen and each gets a solid tint so the rising tide reads.
+     (Only under fx-on; mobile keeps the normal transparent vertical scroll.) */
+  body.fx-on #onceitsin{height:100vh;overflow:hidden}
+  body.fx-on #onceitsin .ost{position:absolute;inset:0;min-height:0;height:100%;will-change:clip-path}
+  body.fx-on #onceitsin .ost:nth-of-type(1){z-index:1}
+  body.fx-on #onceitsin .ost:nth-of-type(2){z-index:2}
+  body.fx-on #onceitsin .ost:nth-of-type(3){z-index:3}
+  body.fx-on #onceitsin .ost:nth-of-type(4){z-index:4}
+  body.fx-on #onceitsin .ost:nth-of-type(5){z-index:5}
+  body.fx-on #onceitsin .ost:nth-of-type(6){z-index:6}
+  /* warm tints on tablet AND desktop (>=601): the sections read as designed bands, and the desktop
+     flood needs opaque panels to cover the one beneath. Phones (<=600) stay transparent cards. */
+  @media (min-width:601px){
+    #onceitsin .ost:nth-of-type(1){background:#F4EADE}
+    #onceitsin .ost:nth-of-type(2){background:#D5DCC8}
+    #onceitsin .ost:nth-of-type(3){background:#EFD8C8}
+    #onceitsin .ost:nth-of-type(4){background:#E7EAE0}
+    #onceitsin .ost:nth-of-type(5){background:#F4EADE}
+    #onceitsin .ost:nth-of-type(6){background:#D5DCC8}
+  }
+  /* ---------- TABLET (601-900): static two-column panels, full screenshot in the frame, comfortable
+     density so it never looks like a phone layout stranded on a big screen (no pin, no flood) ---------- */
+  @media (min-width:601px) and (max-width:1199px){
+    #onceitsin .ost{min-height:90vh;padding:clamp(54px,8vh,96px) clamp(30px,5vw,56px)}
+    #onceitsin .ost:first-of-type{min-height:66vh}
+    #onceitsin .ost:last-of-type{padding-bottom:calc(clamp(54px,8vh,96px) + 66px)}
+    .once .orow{gap:clamp(30px,5vw,58px);max-width:880px;align-items:center}
+    .once .ocopy{flex:0 1 360px;max-width:360px}
+    .once .ocopy h2{font-size:clamp(30px,4.8vw,46px)}
+    .once .ocopy p{font-size:clamp(16px,2.3vw,19px);max-width:32ch}
+    .once .phoneframe{width:clamp(216px,32vw,286px)}
+    .obridge h2{font-size:clamp(40px,6.4vw,58px)}
+  }
+  @media (max-width:600px){
+    /* leave room at the foot of every state so the sticky "Try it early" pill never covers the card */
+    .ost{min-height:100svh;padding:clamp(34px,6vh,64px) 20px calc(96px + env(safe-area-inset-bottom,0px))}
+    .orow,.orow.rev{flex-direction:column;text-align:center;gap:clamp(20px,3.4vh,30px)}
+    .ocopy{flex:0 0 auto;max-width:42rem;text-align:center}
+    .okick{margin-bottom:10px}
+    .ocopy h2{font-size:clamp(28px,7.6vw,36px)}
+    .ocopy p{font-size:16px;margin:12px auto 0}
+    .obridge h2{font-size:clamp(30px,8.4vw,42px)}
+    /* No device bezel on mobile: the user is already holding a phone. Show the (cropped, status-bar-free)
+       app screen as a clean borderless card so there's no phone-in-a-phone or doubled status bar. */
+    .once .phoneframe{background:transparent;padding:0;width:min(352px,86vw);max-width:86vw;
+      border-radius:24px;box-shadow:0 20px 44px -22px rgba(108,78,52,.5),0 3px 12px -5px rgba(108,78,52,.3)}
+    .once .phoneframe img{border-radius:24px}
+    /* "Private by design" is desktop-only; on mobile the FAQ further down covers privacy */
+    .ost-deskonly{display:none}
+  }
+
   /* ---------- section 4: FAQ + close ---------- */
   .closesec{min-height:100vh;display:flex;align-items:center;justify-content:center;
     gap:clamp(36px,5vw,80px);padding:90px 24px 60px;flex-wrap:wrap}
   .fcard{flex:0 1 480px;background:#fffdfb;border:1px solid #e7ddd2;border-radius:20px;padding:10px 26px;
     box-shadow:0 0 16px 3px rgba(108,78,52,.20),0 0 44px 12px rgba(108,78,52,.09);
     -webkit-user-select:text;user-select:text}
-  .faqhead{font-size:13px;font-weight:800;letter-spacing:.12em;color:#7c6f63;margin:16px 0 10px;text-transform:uppercase}
+  .faqhead{font-size:13px;font-weight:800;letter-spacing:.12em;color:#726658;margin:16px 0 10px;text-transform:uppercase}
   .fcard details{border-bottom:1px dashed #e7ddd2;padding:15px 0}
   .fcard details:last-child{border-bottom:0}
   .fcard summary{font-size:15.5px;font-weight:700;cursor:pointer;list-style:none;
     display:flex;justify-content:space-between;align-items:center;gap:12px}
   .fcard summary::-webkit-details-marker{display:none}
-  .fcard summary::after{content:"+";font-size:20px;color:#9a8d80;font-weight:400;flex:0 0 auto;
+  .fcard summary::after{content:"+";font-size:20px;color:#726658;font-weight:400;flex:0 0 auto;
     transition:transform .3s ease}
   .fcard details.expanded summary::after{transform:rotate(45deg)}
   .acoll{display:grid;grid-template-rows:0fr;transition:grid-template-rows .35s ease}
@@ -225,7 +304,7 @@
   .foot-fine{font-size:11.5px;color:#6f6357;line-height:1.65;margin-top:18px;max-width:90ch}
   .foot-c{font-size:11.5px;color:#6f6357;margin-top:14px}
   /* mobile compaction: the full story of each ride fits above Safari's bar */
-  @media (max-width:900px){
+  @media (max-width:1199px){
     .sev h2,.trend h2{font-size:clamp(30px,8.2vw,38px)}
     .sev .lede,.trend .lede{margin-top:10px;font-size:16px;min-height:0}
     .sevpill,.trendpill{margin-top:14px}
@@ -255,10 +334,148 @@
   @supports (height:100svh){
     .hero,.closesec{min-height:100svh}
     .sevpin,.trendpin{min-height:100svh}
-    @media (min-width:901px){
+    @media (min-width:1200px){
       .sevpin,.trendpin{padding-top:max(24px,calc(50svh - 250px))}
     }
   }
+
+  /* ---------- NEW (Jun 2026): top chrome + hero→step text-mask-zoom intro ---------- */
+  .topbar{position:fixed;top:0;left:0;right:0;z-index:40;display:flex;align-items:center;justify-content:space-between;
+    padding:calc(16px + env(safe-area-inset-top,0px)) clamp(18px,4vw,40px) 16px;pointer-events:none}
+  .topbar .brand{display:flex;align-items:center;gap:9px;text-decoration:none;pointer-events:auto}
+  .topbar .brand-drop{display:block;height:30px;width:auto;transition:filter .35s ease}
+  .topbar .brand-wm{font-family:"New York","Iowan Old Style",Georgia,serif;font-weight:600;font-size:21px;
+    color:#B52121;letter-spacing:-.01em;line-height:1;transition:color .35s ease}
+  .topcta{pointer-events:auto;display:inline-flex;align-items:center;background:#111;color:#fff;text-decoration:none;
+    padding:11px 22px;border-radius:12px;line-height:1.15;transition:transform .15s ease,background .35s ease,color .35s ease}
+  .topcta:active{transform:scale(.97)}
+  .topcta .t{font-size:15px;font-weight:700}
+  .topcta .apple{width:15px;height:auto;margin-right:8px;position:relative;top:-1px;flex:0 0 auto}
+  @media (max-width:560px){ .topcta{padding:10px 16px} }
+  /* mobile sticky CTA — thumb-zone primary action, hidden on desktop, slides up after the hero */
+  .mcta{display:none}
+  @media (max-width:1199px){
+    /* no CTA before the app is explained: drop the header pill on mobile; the sticky CTA (which
+       appears at Step 3) is the only call to action. Desktop keeps its header pill. */
+    .topcta{display:none}
+    .mcta{display:inline-flex;align-items:center;justify-content:center;gap:9px;position:fixed;z-index:60;
+      left:16px;right:16px;bottom:calc(14px + env(safe-area-inset-bottom,0px));min-height:56px;padding:0 22px;
+      background:#111;color:#fff;text-decoration:none;border-radius:14px;font-size:17px;font-weight:700;letter-spacing:-.01em;
+      box-shadow:0 12px 30px -8px rgba(0,0,0,.4);
+      transform:translateY(calc(100% + 30px + env(safe-area-inset-bottom,0px)));opacity:0;
+      transition:transform .35s ease,opacity .3s ease;pointer-events:none}
+    .mcta.show{transform:translateY(0);opacity:1;pointer-events:auto}
+    .mcta:active{transform:translateY(0) scale(.985)}
+    .mcta .apple{width:17px;height:auto;position:relative;top:-1px;flex:0 0 auto}
+  }
+
+  .intro{position:relative;z-index:1}
+  .intro-stage{position:relative}
+  .screen{min-height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;
+    text-align:center;padding:24px}
+  .introh1{font-size:clamp(48px,9.5vw,118px);line-height:.92;letter-spacing:-.035em;font-weight:700}
+  .introh1 .line1{display:block;color:#2a211c}
+  .introh1 .line2{display:block;will-change:opacity;transform-origin:center center}
+  .introlede{font-size:clamp(17px,2.1vw,21px);color:#6f6357;margin:26px auto 0;max-width:30ch;line-height:1.5}
+  .screen1{position:relative}
+  .intro .scrollcue{display:block;font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;bottom:30px;color:#6f6357}
+  /* "And once it's in" teaser at the foot of the combined panel — rides in with it (desktop only) */
+  .s-combo .scrollcue{display:block;font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;bottom:30px;color:#6f6357}
+  /* how-it-works: Step 1, then a combined Step 2+3 panel that slides in from the right to COVER it */
+  .how{overflow:hidden}
+  .how-track{display:block}                                  /* default/reduced: stacked vertically */
+  /* CALM EARTH-TONE chapter (Oura-inspired): light, grounded backgrounds; red used sparingly.
+     Photos are SHARP-cornered (four hard edges, no curves). Each step has a DIFFERENT layout. */
+  .step{min-height:100svh;display:flex;align-items:center;justify-content:center;
+    padding:clamp(82px,12vh,120px) clamp(22px,5vw,60px) 44px;color:#2a211c}
+  .how-track .step:nth-child(1){background:#E6D7BE}   /* warm oat — Step 1 (the combined panel sets its own sage/clay split) */
+  .step-no{font-size:13px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:#B52121}  /* the one sparing red */
+  .step-h{font-size:clamp(32px,4.6vw,56px);font-weight:700;letter-spacing:-.025em;line-height:1.03;color:#2a211c;margin-top:10px}
+  .step-p{font-size:clamp(15px,1.7vw,19px);color:#4A4039;max-width:30ch;margin-top:12px;line-height:1.5}
+  /* SHARP photo placeholders — no border-radius. To use a real photo, drop an <img> inside the .ph
+     box, e.g. <div class="ph p1"><img src="assets/step1-a.jpg" alt="..."></div>. Any aspect ratio is
+     fine: the image fills the box and is CROPPED (object-fit:cover) to keep the layout's shape — never
+     stretched, never letterboxed. Add class "focus-top"/"focus-bottom" to the .ph if the default
+     centre crop cuts off something important (e.g. the numbers on a monitor). */
+  .ph{position:relative;background:#FBF6EE;border:1px solid rgba(60,40,24,.09);box-shadow:0 14px 36px -22px rgba(60,40,24,.32);overflow:hidden}
+  .ph::after{content:"";position:absolute;inset:0;opacity:.4;background:center/34px no-repeat url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%239b8e7e' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='3' y='3' width='18' height='18'/%3E%3Ccircle cx='8.5' cy='8.5' r='1.6'/%3E%3Cpath d='M21 15l-6-6L5 19'/%3E%3C/svg%3E")}
+  /* a real image fills + crops the box (cover), sitting above the placeholder icon */
+  .ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;display:block;z-index:1}
+  .ph.focus-top img{object-position:center top}
+  .ph.focus-bottom img{object-position:center bottom}
+
+  /* Step 1 — wide hero + text + three thumbnails (layout 4·C) */
+  .s-fourc .wrap{display:grid;grid-template-columns:1fr 1fr 1.05fr;grid-template-rows:2.4fr 1fr;
+    grid-template-areas:"a a t" "b c d";gap:16px;width:100%;max-width:1300px;height:min(78svh,720px)}
+  .s-fourc .step-copy{grid-area:t;display:flex;flex-direction:column;justify-content:center;text-align:left;padding-left:clamp(10px,2vw,30px)}
+  .s-fourc .p1{grid-area:a} .s-fourc .p2{grid-area:b} .s-fourc .p3{grid-area:c} .s-fourc .p4{grid-area:d}
+  .s-fourc .p1 img{object-position:center 40%}   /* tall community hero: keep both the faces and the arm/cuff */
+
+  /* Steps 2 & 3 COMBINED — one panel split left (capture · sage) / right (confirm · clay) */
+  .s-combo{padding:0;align-items:stretch}
+  .s-combo .combo-half{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;
+    gap:clamp(18px,3vh,30px);padding:clamp(70px,9vh,108px) clamp(20px,3vw,46px) 44px;text-align:center}
+  .s-combo .cap{background:#D5DCC8}     /* soft sage  */
+  .s-combo .conf{background:#EFD8C8}    /* dusty clay */
+  .s-combo .step-copy{display:flex;flex-direction:column;align-items:center}
+  .s-combo .cap .step-p{max-width:20ch}
+  .s-combo .conf .step-p{max-width:34ch}
+  /* identical phone frames both sides (fixed aspect so the OCR overlay stays aligned) */
+  .vf,.cshot{position:relative;flex:0 0 auto;width:min(280px,76vw);aspect-ratio:246/460;border-radius:30px;
+    border:9px solid #15151a;overflow:hidden;background:#000;box-shadow:0 24px 58px -22px rgba(0,0,0,.6)}
+  .vf img,.cshot img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+  .vf img{object-position:54% 50%}
+  .cshot img{object-position:50% 66%}
+  /* viewfinder: corner brackets + OCR boxes (read-out tag on the LEFT so the digit stays visible) + capture bar */
+  .vfc{position:absolute;width:9%;height:5%;border:3px solid #fff;opacity:.92}
+  .vfc.tl{top:5%;left:6%;border-right:0;border-bottom:0}  .vfc.tr{top:5%;right:6%;border-left:0;border-bottom:0}
+  .vfc.bl{bottom:13%;left:6%;border-right:0;border-top:0} .vfc.br{bottom:13%;right:6%;border-left:0;border-top:0}
+  .ocr{position:absolute;border:2.5px solid #1A6E2E;border-radius:6px;box-shadow:0 0 0 3px rgba(26,110,46,.22)}
+  .ocr b{position:absolute;right:calc(100% + 6px);top:50%;transform:translateY(-50%);background:#1A6E2E;color:#fff;
+    font-size:clamp(10px,1.1vw,13px);font-weight:800;padding:3px 7px;border-radius:5px;box-shadow:0 4px 10px -3px rgba(0,0,0,.5)}
+  .o-sys{left:32%;top:13%;width:32%;height:13%}
+  .o-dia{left:42%;top:28.5%;width:24%;height:13%}
+  .o-pul{left:50%;top:44.5%;width:19%;height:11.5%}
+  .vfcap{position:absolute;left:0;right:0;bottom:0;height:11%;background:rgba(17,17,17,.9);display:flex;
+    align-items:center;justify-content:center;gap:7px;color:#fff;font-weight:700;font-size:clamp(11px,1.2vw,14px)}
+  .vfcap .d{width:8px;height:8px;border-radius:50%;background:#46d17f;box-shadow:0 0 0 4px rgba(70,209,127,.25)}
+
+  @media (max-width:1199px){
+    /* phone/tablet: each step must fit ONE screen. Top-align the content below the fixed top bar
+       (so the title can never hide behind it), and show a reduced, size-varied set of photos
+       instead of a tall monotonous stack. */
+    /* native stacked flow on mobile (no pinning): how-it-works is a normal full-width column */
+    .how{display:block;overflow:visible}
+    .step{padding:calc(env(safe-area-inset-top,0px) + 88px) 20px calc(28px + env(safe-area-inset-bottom,0px));align-items:flex-start;width:100%}
+    .s-fourc .wrap{display:flex;flex-direction:column;height:auto;max-width:460px;gap:14px}
+    .s-fourc .step-copy{order:-1;text-align:center;padding:0}
+    /* ONE photo per step on mobile — a single prominent image, the rest hidden */
+    .s-fourc .ph{height:min(46svh,360px)}
+    .s-fourc .p2,.s-fourc .p3,.s-fourc .p4{display:none}
+    /* combined panel stacks vertically on mobile — Step 2 then Step 3, each its own screen */
+    .s-combo{flex-direction:column;padding:0;align-items:stretch}
+    .s-combo .combo-half{min-height:100svh;justify-content:flex-start;
+      padding:calc(env(safe-area-inset-top,0px) + 88px) 20px calc(28px + env(safe-area-inset-bottom,0px))}
+    .vf,.cshot{width:min(300px,80vw)}
+    /* cue: keep the hero hint (lifted clear of the home indicator); drop the steps teaser (sticky CTA covers it) */
+    .intro .scrollcue{bottom:calc(30px + env(safe-area-inset-bottom,0px))}
+    .s-combo .scrollcue{display:none}
+  }
+
+
+  /* when GSAP motion is active: pin the hero+steps in one viewport; steps become a wide row */
+  body.fx-on .intro{height:100svh}
+  body.fx-on .intro-stage{height:100svh}
+  body.fx-on .screen{position:absolute;inset:0;min-height:0;height:100%}
+  /* COVER-REVEAL (horizontal): the steps are STACKED full-viewport layers, not a row. Each later
+     step sits on a higher layer and starts pushed fully off-screen to the RIGHT; scrolling slides
+     it LEFT to cover the one before. So only one colour is ever settled on screen — no side-by-side
+     seam — and a soft leading-edge (left) shadow reads as a card sliding over the previous step. */
+  body.fx-on .how{opacity:0;z-index:2;height:100svh;display:block;padding:0}
+  body.fx-on .how-track{position:relative;width:100vw;height:100svh;display:block}
+  body.fx-on .how-track .step{position:absolute;inset:0;width:100vw;height:100svh;min-height:0}
+  body.fx-on .how-track .step:nth-child(1){z-index:1}
+  body.fx-on .how-track .step:nth-child(2){z-index:2;box-shadow:-34px 0 70px -24px rgba(60,40,24,.30)}
 </style>
 <script type="application/ld+json">
 {
@@ -340,97 +557,172 @@
 </script>
 </head>
 <body>
+<script>
+  /* every fresh load starts at the top — don't restore the previous scroll position */
+  if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+  addEventListener('load', function(){ scrollTo(0, 0); });
+</script>
 
 <canvas id="pond" aria-hidden="true"></canvas>
 <div id="grain" aria-hidden="true"></div>
+
+<!-- mobile-only sticky CTA: thumb-zone primary action, revealed after the hero -->
+<a class="mcta" id="mcta" href="https://testflight.apple.com/join/NeDKevPZ" aria-label="Try Coraly early on TestFlight">
+  <svg class="apple" viewBox="0 0 384 512" aria-hidden="true"><path fill="currentColor" d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg>
+  <span>Try it early</span>
+</a>
 
 
 
 <main>
 
-  <!-- ============ SECTION 1 · HERO ============ -->
-  <section class="hero">
-    <div class="copy">
-      <h1>One Photo.<br><span class="accent serif">Logged.</span></h1>
-      <p class="lede">Take a photo of your blood pressure monitor and Coraly does the rest. No typing, no notebook.</p>
-      <div class="ctarow">
-        <button class="sleep" id="sleepbtn"><span class="a">&#63743;</span><span class="t"><small>Coming soon to the</small>App Store</span></button>
-        <a class="applepill tfpill" href="https://testflight.apple.com/join/NeDKevPZ"><span class="t"><small>Meanwhile, try it on</small>TestFlight</span></a>
-      </div>
-      <p class="sleepmsg" id="sleepmsg" aria-live="polite"></p>
-      <p class="herotrust" style="margin-top:4px">Free. Private. Calm.</p>
-    </div>
-    <div class="scrollcue" id="scrollcue" aria-hidden="true">&#8595;</div>
-    <div class="phoneframe" id="phoneframe">
-      <img src="assets/confirmation.png" width="1206" height="2622" fetchpriority="high"
-           alt="Coraly’s Check Your Reading screen: 118 over 76 and pulse 64, each labelled Normal, with a Save to Apple Health button">
-    </div>
-  </section>
+  <!-- fixed brand chrome: drop logo left, brand-black TestFlight CTA right -->
+  <header class="topbar">
+    <a class="brand" href="#" aria-label="Coraly">
+      <img class="brand-drop" src="assets/drop-512.png" alt="" width="356" height="512">
+      <span class="brand-wm">Coraly</span>
+    </a>
+    <a class="topcta" href="https://testflight.apple.com/join/NeDKevPZ"><svg class="apple" viewBox="0 0 384 512" aria-hidden="true"><path fill="currentColor" d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg><span class="t">Try it early</span></a>
+  </header>
 
-  <!-- ============ SECTION 2 · KNOW WHAT YOUR NUMBERS MEAN / CATCHES A BAD READING ============ -->
-  <section class="sev" id="sevdemo">
-    <div class="sevprog" id="sev-prog"></div>
-    <div class="sevpin">
-      <div class="rcard" id="rcard">
-        <div class="rc-read" id="sev-read">
-          <div class="rc-big" id="sev-bp">118<span class="sl">/</span>76<span class="u">mmHg</span></div>
-          <div><span class="badge" id="sev-badge">&#10003; Normal</span></div>
-          <div class="pulse" id="sev-pulse">&#9829; 64 bpm</div>
-        </div>
-        <div class="rc-coll" id="sev-impw"><div class="cl">
-          <div class="impx">
-            <div class="impt">These Numbers Don&rsquo;t Add Up</div>
-            <p class="impp">The diastolic value is higher than the systolic, which isn&rsquo;t physically possible. This usually points to a monitor misread. Please measure again.</p>
+  <!-- ============ SECTION 1 · HERO  →  SECTION 2 placeholder · text-mask-zoom on “Logged.” ============ -->
+  <section class="intro" id="intro">
+    <div class="intro-stage" id="introStage">
+
+      <!-- screen 1 : the hero -->
+      <div class="screen screen1" id="screen1">
+        <div class="heroblock">
+          <h1 class="introh1">
+            <span class="line1" id="hlOne">One Photo.</span>
+            <span class="line2 accent serif" id="hlLogged">Logged.</span>
+          </h1>
+          <div id="herofade">
+            <p class="introlede">Take a picture of your blood pressure monitor and Coraly does the rest.</p>
+            <p class="herotrust" style="margin-top:16px">Easy. Fast. Private.</p>
           </div>
-          <div class="rc-ctas"><span class="measure">Measure Again</span><span class="anyway">Save anyway</span></div>
-        </div></div>
-        <div class="tryit">
-          <label for="sev-sys">Or drag it yourself</label>
-          <input type="range" id="sev-sys" min="108" max="174" value="118" step="1">
         </div>
-        <p class="rc-fine">The Normal, Elevated and High labels are based on general population guidelines and may not reflect what is healthy for you. Coraly does not provide diagnosis or treatment.</p>
+        <div class="scrollcue" id="scrollcue" aria-hidden="true">See how it works &#8595;</div>
       </div>
-      <div class="copy">
-        <h2 id="sev-head">Know what your<br><span id="sev-accent" style="color:#1A6E2E">numbers mean.</span></h2>
-        <p class="lede" id="sev-sub">Calm, colour-coded severity. Every reading clearly labelled, so you know what it means at a glance.</p>
-        <a class="applepill sevpill" href="https://testflight.apple.com/join/NeDKevPZ"><span class="t"><small>Try it early on</small>TestFlight</span></a>
+
+      <!-- screen 2 : the how-it-works, revealed by the zoom then panned through horizontally -->
+      <div class="screen how" id="how">
+        <div class="how-track" id="howTrack">
+          <div class="step s-fourc">
+            <div class="wrap">
+              <div class="step-copy">
+                <div class="step-no">Step 1</div>
+                <h2 class="step-h">Take a Reading</h2>
+                <p class="step-p">Use the blood pressure monitor you already have.</p>
+              </div>
+              <div class="ph p1"><img src="assets/step1/step1-8.jpg" alt="A health worker fitting a blood-pressure cuff on a seated woman's arm" loading="lazy" decoding="async"></div>
+              <div class="ph p2"><img src="assets/step1/step1-7.jpg" alt="A wrist blood-pressure monitor showing a reading" loading="lazy" decoding="async"></div>
+              <div class="ph p3"><img src="assets/step1/step1-5.jpg" alt="A person taking their own blood pressure at home" loading="lazy" decoding="async"></div>
+              <div class="ph p4"><img src="assets/step1/step1-1.jpg" alt="A clinician measuring a patient's blood pressure" loading="lazy" decoding="async"></div>
+            </div>
+          </div>
+          <div class="step s-combo">
+            <div class="combo-half cap">
+              <div class="step-copy">
+                <div class="step-no">Step 2</div>
+                <h2 class="step-h">Photograph It</h2>
+                <p class="step-p">Coraly automatically reads the numbers.</p>
+              </div>
+              <div class="vf">
+                <img src="assets/step2/step2-monitor.jpg" alt="A home blood-pressure monitor reading 103 over 70, pulse 82" loading="lazy" decoding="async">
+                <span class="vfc tl"></span><span class="vfc tr"></span><span class="vfc bl"></span><span class="vfc br"></span>
+                <span class="ocr o-sys"><b>103</b></span>
+                <span class="ocr o-dia"><b>70</b></span>
+                <span class="ocr o-pul"><b>82</b></span>
+                <span class="vfcap"><span class="d"></span>All three read</span>
+              </div>
+            </div>
+            <div class="combo-half conf">
+              <div class="step-copy">
+                <div class="step-no">Step 3</div>
+                <h2 class="step-h">Confirm and Save</h2>
+                <p class="step-p">Check the numbers, confirm, and Coraly logs them to your history and Apple Health.</p>
+              </div>
+              <div class="cshot">
+                <img src="assets/step2/step2-confirm.png" alt="Coraly's Check Your Reading screen, ready to save to Apple Health" loading="lazy" decoding="async">
+              </div>
+            </div>
+            <div class="scrollcue combocue" aria-hidden="true">And once it&rsquo;s in &#8595;</div>
+          </div>
+        </div>
       </div>
+
     </div>
   </section>
 
-  <!-- ============ SECTION 3 · SEE YOUR TREND AT A GLANCE ============ -->
-  <section class="trend" id="trenddemo">
-    <div class="trendprog" id="tr-prog"></div>
-    <div class="trendpin">
-      <div class="copy">
-        <h2>See your trend<br><span id="tr-accent" style="color:#1A6E2E">at a glance.</span></h2>
-        <p class="lede">Your full history, easy to scan, always free.</p>
-        <a class="applepill trendpill" id="tr-pill" href="https://testflight.apple.com/join/NeDKevPZ"><span class="t"><small>Try it early on</small>TestFlight</span></a>
-      </div>
-      <div class="tcard" id="tcard">
-        <div class="chart">
-          <div class="band"></div>
-          <svg viewBox="0 0 280 144">
-            <polyline id="tr-sys" points="12,48 33.3,55 54.7,68 76,62 97.3,56 118.7,66 140,72 161.3,69 182.7,60 204,67 225.3,76 246.7,73 268,66" fill="none" stroke="#B52121" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-            <polyline id="tr-dia" points="12,94 33.3,98 54.7,106 76,102 97.3,98 118.7,105 140,107 161.3,106 182.7,100 204,105 225.3,107 246.7,106 268,101" fill="none" stroke="#1A6E2E" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-            <circle id="tr-sdot" cx="268" cy="66" r="4.5" fill="#B52121"/>
-            <circle id="tr-ddot" cx="268" cy="101" r="4.5" fill="#1A6E2E"/>
-          </svg>
-        </div>
-        <div class="days" id="tr-days"><span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span><span>Sun</span></div>
-        <div class="legend"><span class="ls">&#9644; Systolic</span><span class="ld">&#9644; Diastolic</span></div>
-        <div class="hrow" id="tr-r0">
-          <div class="hmain"><div class="hleft"><div class="hday"></div><div class="htime"></div></div><div class="hmid"><div class="hv"></div><div class="hp"></div></div><span class="hb"></span><span class="chev">&#8250;</span></div>
-        </div>
-        <div class="hrow" id="tr-r1">
-          <div class="hdel"><svg viewBox="0 0 15 16" fill="none" stroke="#fff" stroke-width="1.4" stroke-linecap="round"><path d="M1.5 3.5h12M5 3.5V2.2c0-.4.3-.7.7-.7h3.6c.4 0 .7.3.7.7v1.3M3 3.5l.8 10.3c0 .4.3.7.7.7h6c.4 0 .7-.3.7-.7L12 3.5M6 6.5v5M9 6.5v5"/></svg>Delete</div>
-          <div class="hmain"><div class="hleft"><div class="hday"></div><div class="htime"></div></div><div class="hmid"><div class="hv"></div><div class="hp"></div></div><span class="hb"></span><span class="chev">&#8250;</span></div>
-        </div>
-        <div class="hrow" id="tr-r2">
-          <div class="hmain"><div class="hleft"><div class="hday"></div><div class="htime"></div></div><div class="hmid"><div class="hv"></div><div class="hp"></div></div><span class="hb"></span><span class="chev">&#8250;</span></div>
-        </div>
+
+  <!-- ============ ONCE IT'S IN · what every reading does for you (REAL app screenshots) ============
+       Desktop: pinned flood-fill between feature panels. Mobile: plain vertical scroll.
+       Each screen is a real Coraly screenshot from the app's design-review set (assets/once/). -->
+  <section class="once" id="onceitsin">
+
+    <div class="ost">
+      <div class="obridge">
+        <h2 class="serif">Every reading,<br><span class="bridge-swap"><span class="bw">working for you.</span><span class="bw">understood.</span><span class="bw">tracked.</span><span class="bw">protected.</span></span></h2>
+        <p>Here&rsquo;s what Coraly does the moment a reading lands.</p>
+        <div class="obridge-teaser" aria-hidden="true"><span>Understand</span><span>Catch</span><span>Track</span><span>Remind</span><span>Protect</span></div>
       </div>
     </div>
+
+    <div class="ost">
+      <div class="orow">
+        <div class="ocopy">
+          <div class="okick">What it means</div>
+          <h2>Know what your <span class="a">numbers mean.</span></h2>
+          <p>Every reading is labelled Low, Normal, Elevated or High, so you know where you stand at a glance.</p>
+        </div>
+        <div class="phoneframe"><picture><source media="(max-width:600px)" srcset="assets/once/know-m.png"><img src="assets/once/know.png" alt="Coraly home screen showing a last reading of 118 over 76, labelled Normal" width="640" height="1391" loading="lazy" decoding="async"></picture></div>
+      </div>
+    </div>
+
+    <div class="ost">
+      <div class="orow rev">
+        <div class="ocopy">
+          <div class="okick">Caught early</div>
+          <h2>Catches a <span class="a">bad reading.</span></h2>
+          <p>If the numbers can&rsquo;t be right, Coraly flags it before it&rsquo;s saved. A monitor misread never lands in your history.</p>
+        </div>
+        <div class="phoneframe"><picture><source media="(max-width:600px)" srcset="assets/once/catch-m.png"><img src="assets/once/catch.png" alt="Coraly flagging an impossible reading where the lower number is higher than the upper number" width="640" height="1391" loading="lazy" decoding="async"></picture></div>
+      </div>
+    </div>
+
+    <div class="ost">
+      <div class="orow">
+        <div class="ocopy">
+          <div class="okick">Over time</div>
+          <h2>See your trend <span class="a">at a glance.</span></h2>
+          <p>Simple charts and averages show where your blood pressure is heading over days and weeks.</p>
+        </div>
+        <div class="phoneframe"><picture><source media="(max-width:600px)" srcset="assets/once/trend-m.png"><img src="assets/once/trend.png" alt="Coraly history screen with blood pressure and pulse trend charts" width="640" height="1391" loading="lazy" decoding="async"></picture></div>
+      </div>
+    </div>
+
+    <div class="ost">
+      <div class="orow rev">
+        <div class="ocopy">
+          <div class="okick">On time</div>
+          <h2>A gentle nudge <span class="a">to measure.</span></h2>
+          <p>Set a reminder and Coraly notifies you around the same time each day.</p>
+        </div>
+        <div class="phoneframe"><picture><source media="(max-width:600px)" srcset="assets/once/remind-m.png"><img src="assets/once/remind.png" alt="A Coraly lock-screen reminder: Morning Reading, a good time to check your blood pressure" width="640" height="1391" loading="lazy" decoding="async"></picture></div>
+      </div>
+    </div>
+
+    <div class="ost ost-deskonly">
+      <div class="orow">
+        <div class="ocopy">
+          <div class="okick">Yours alone</div>
+          <h2>Private <span class="a">by design.</span></h2>
+          <p>No account, no ads. Your readings stay on your iPhone and in Apple Health, and nothing leaves your device unless you choose to send a photo to improve accuracy.</p>
+        </div>
+        <div class="phoneframe"><picture><source media="(max-width:600px)" srcset="assets/once/private-m.png"><img src="assets/once/private.png" alt="Coraly about screen explaining its privacy and that it is not a medical device" width="640" height="1391" loading="lazy" decoding="async"></picture></div>
+      </div>
+    </div>
+
   </section>
 
   <!-- ============ SECTION 4 · FAQ + CLOSE ============ -->
@@ -448,7 +740,7 @@
       <h2>Your readings deserve<br><span class="accent serif">a calmer home.</span></h2>
       <p class="closetrust">Free. Private. Calm.</p>
       <div class="lockrow">
-        <span class="lk"><img src="assets/drop-512.png" alt="" width="356" height="512" loading="lazy" decoding="async" id="lkdrop" title="plop"><span class="wm">Coraly</span></span>
+        <span class="lk"><picture><source srcset="assets/drop-512.webp" type="image/webp"><img src="assets/drop-512.png" alt="" width="356" height="512" loading="lazy" decoding="async" id="lkdrop" title="plop"></picture><span class="wm">Coraly</span></span>
         <span class="vrule" aria-hidden="true"></span>
         <a class="applepill tfpill" href="https://testflight.apple.com/join/NeDKevPZ"><span class="t"><small>Try it early on</small>TestFlight</span></a>
       </div>
@@ -504,6 +796,16 @@ addEventListener('focus', ()=>{ FOCUSED = true; });
 
   /* ============ the canonical pond (LOVED · day) ============ */
   if (reduced){ canvas.remove(); return; }
+  /* Performance gate (added Jun 2026): the live WebGL pond is a desktop delight whose
+     interactive ripples are a pointer affordance. On phones / small or low-RAM devices it
+     is pure ambient cost — a full-screen fragment pass every frame — and it is the main
+     driver of the mobile Total Blocking Time. There we fall back to the same calm beige as
+     the reduced-motion / no-WebGL path. TUNE these thresholds if you want the pond on more
+     devices (e.g. drop the coarse-pointer test to keep it on touch laptops). */
+  const lowPower = matchMedia('(max-width:1199px)').matches
+                || matchMedia('(pointer:coarse)').matches
+                || (navigator.deviceMemory > 0 && navigator.deviceMemory <= 4);
+  if (lowPower){ canvas.remove(); return; }
   const gl = canvas.getContext('webgl',{alpha:false,antialias:false,depth:false,stencil:false});
   if (!gl){ canvas.remove(); return; }
 
@@ -732,180 +1034,6 @@ addEventListener('focus', ()=>{ FOCUSED = true; });
   }
 })();
 
-/* section 2: scroll ride — the reading climbs as you scroll; past plausibility the
-   story turns to the bad-reading catch. Palette + card anatomy match the App Store
-   screenshots. Slider is the manual/accessible override. */
-(function(){
-  const $ = id => document.getElementById(id);
-  const demo = $('sevdemo'), prog = $('sev-prog'), head = $('sev-head'), sub = $('sev-sub'),
-        read = $('sev-read'), bp = $('sev-bp'), badge = $('sev-badge'), pulse = $('sev-pulse'),
-        impw = $('sev-impw'), sys = $('sev-sys'),
-        card = $('rcard');
-  if (!demo) return;
-  const SEV = {
-    normal:  {label:'\u2713 Normal',   c:'#1A6E2E', tint:'#E7F0E8', border:'#c6dcc8', bb:'#cfe6d0'},
-    elevated:{label:'\u26A0 Elevated', c:'#8F4B00', tint:'#F6EBDD', border:'#e3c79f', bb:'#efdcc2'},
-    high:    {label:'\u2191 High',     c:'#B52121', tint:'#F7E4E2', border:'#e3aaa6', bb:'#efc9c6'}
-  };
-  function render(s){
-    const imp = s >= 160;
-    /* the flagged example mirrors the app's sheet: diastolic higher than systolic */
-    const sv = imp ? 118 : s, dv = imp ? 126 : Math.round(s*0.55+8);
-    const k = s >= 140 ? 'high' : s >= 130 ? 'elevated' : 'normal', m = SEV[k];
-    bp.innerHTML = sv+'<span class="sl">/</span>'+dv+'<span class="u">mmHg</span>';
-    bp.style.color = imp ? '#B52121' : m.c;
-    read.style.background = imp ? '#F7E4E2' : m.tint;
-    read.style.borderColor = imp ? '#e3aaa6' : m.border;
-    /* sheet background: the card turns cream like the app's sheet when flagged */
-    card.style.background = imp ? '#F6EBE1' : '#fffdfb';
-    card.style.borderColor = imp ? '#e0d2c1' : '#e7ddd2';
-    badge.textContent = imp ? '\u21C8 Very High' : m.label;
-    badge.style.background = imp ? '#F9E3E1' : m.bb;
-    badge.style.color = imp ? '#B52121' : m.c;
-    badge.style.border = imp ? '1px solid #e3aaa6' : '1px solid transparent';
-    pulse.style.visibility = imp ? 'hidden' : 'visible';
-    impw.classList.toggle('on', imp);
-    if (+sys.value !== s) sys.value = s;
-    sys.style.accentColor = imp ? '#B52121' : m.c;
-    prog.style.background = imp ? '#B52121' : m.c;
-    const acc = document.getElementById('sev-accent');
-    if (acc) acc.style.color = m.c;
-    setHead(imp);
-  }
-  function setHead(imp){
-    if (head.dataset.s === (imp?'1':'0')) return;
-    head.dataset.s = imp?'1':'0';
-    FR.touch(500);
-    head.style.opacity = 0;
-    setTimeout(()=>{
-      head.innerHTML = imp ? 'Catches a<br>bad reading.'
-                           : 'Know what your<br><span id="sev-accent">numbers mean.</span>';
-      sub.textContent = imp ? 'A faulty cuff shouldn\u2019t scare you.'
-        : 'Calm, colour-coded severity. Every reading clearly labelled, so you know what it means at a glance.';
-      head.style.opacity = 1;
-    }, 300);
-  }
-  let lastS = -1, dRect = null, sliding = false;
-  FR.reads.push((dirty)=>{ if (dirty || !dRect) dRect = demo.getBoundingClientRect(); });
-  FR.writes.push((dirty)=>{
-    if (!dirty || !dRect) return;
-    /* dirty frames from card growth (FR.touch) keep the pond tracking, but only a
-       genuine scroll or resize may take the value back from the slider */
-    if (!(FR.scrollDirty || FR.resizeDirty) || sliding) return;
-    const total = dRect.height - FR.vh;
-    if (total <= 0) return;
-    const tt = Math.min(1, Math.max(0, -dRect.top / total));
-    prog.style.width = (tt*100)+'%';
-    prog.style.opacity = (tt > .02 && tt < .98) ? 1 : 0;
-    const s = Math.round(108 + tt*(174-108));
-    if (s !== lastS){ lastS = s; render(s); }
-  });
-  sys.addEventListener('input', e=>{ lastS = +e.target.value; render(lastS); });
-  sys.addEventListener('pointerdown', ()=>{ sliding = true; });
-  addEventListener('pointerup', ()=>{ sliding = false; }, {passive:true});
-  addEventListener('pointercancel', ()=>{ sliding = false; }, {passive:true});
-  render(118);
-})();
-
-/* section 3: a fortnight of readings, morning and evening, lands continuously as you
-   scroll — the line tip glides between points instead of jumping breakpoint to breakpoint.
-   Row styling mirrors screenshot 7. */
-(function(){
-  const $ = id => document.getElementById(id);
-  const demo = $('trenddemo'), prog = $('tr-prog');
-  if (!demo) return;
-  const N = 13, X = Array.from({length:N}, (_,i)=> 12 + i*(256/(N-1)));
-  /* Mon..Sun, AM/PM; y derived from values (sy = 84-(sys-110), dy = 112-(dia-70)*0.8) */
-  const D = [
-    {v:'146/92', p:90, sev:'high',     sy:48, dy:94,  dd:'Mon',   tm:'8:10 AM', day:0},
-    {v:'139/88', p:84, sev:'elevated', sy:55, dy:98,  dd:'Mon',   tm:'9:12 PM', day:0},
-    {v:'126/78', p:72, sev:'normal',   sy:68, dy:106, dd:'Tue',   tm:'7:48 AM', day:1},
-    {v:'132/82', p:78, sev:'elevated', sy:62, dy:102, dd:'Tue',   tm:'8:30 PM', day:1},
-    {v:'138/88', p:84, sev:'elevated', sy:56, dy:98,  dd:'Wed',   tm:'8:24 AM', day:2},
-    {v:'128/79', p:76, sev:'normal',   sy:66, dy:105, dd:'Wed',   tm:'9:05 PM', day:2},
-    {v:'122/76', p:68, sev:'normal',   sy:72, dy:107, dd:'Thu',   tm:'8:06 AM', day:3},
-    {v:'125/78', p:70, sev:'normal',   sy:69, dy:106, dd:'Thu',   tm:'8:47 PM', day:3},
-    {v:'134/85', p:80, sev:'elevated', sy:60, dy:100, dd:'Fri',   tm:'8:14 AM', day:4},
-    {v:'127/79', p:74, sev:'normal',   sy:67, dy:105, dd:'Fri',   tm:'8:42 PM', day:4},
-    {v:'118/76', p:66, sev:'normal',   sy:76, dy:107, dd:'Sat',   tm:'7:55 AM', day:5},
-    {v:'121/77', p:70, sev:'normal',   sy:73, dy:106, dd:'Sat',   tm:'8:18 PM', day:5},
-    {v:'128/84', p:80, sev:'elevated', sy:66, dy:101, dd:'Today', tm:'8:02 AM', day:6}
-  ];
-  const C = { normal:  {c:'#1A6E2E', bb:'#cfe6d0', ic:'\u2713', w:'Normal'},
-              elevated:{c:'#8F4B00', bb:'#efdcc2', ic:'\u26A0', w:'Elevated'},
-              high:    {c:'#B52121', bb:'#efc9c6', ic:'\u2191', w:'High'} };
-  const sys = $('tr-sys'), dia = $('tr-dia'), sd = $('tr-sdot'), dd = $('tr-ddot'),
-        days = $('tr-days').children,
-        rows = [$('tr-r0'), $('tr-r1'), $('tr-r2')];
-  const lerp = (a,b,f)=>a+(b-a)*f;
-  let lastLanded = -1;
-  function render(p){              /* p: continuous 0..N-1 */
-    p = Math.max(0, Math.min(N-1, p));
-    const idx = Math.floor(p), f = p - idx;
-    /* full points up to idx, then a tip gliding toward the next point */
-    let sp = D.slice(0, idx+1).map((d,i)=>X[i]+','+d.sy);
-    let dp = D.slice(0, idx+1).map((d,i)=>X[i]+','+d.dy);
-    let tx = X[idx], tsy = D[idx].sy, tdy = D[idx].dy;
-    if (f > 0 && idx < N-1){
-      tx = lerp(X[idx], X[idx+1], f);
-      tsy = lerp(D[idx].sy, D[idx+1].sy, f);
-      tdy = lerp(D[idx].dy, D[idx+1].dy, f);
-      sp.push(tx+','+tsy); dp.push(tx+','+tdy);
-    }
-    sys.setAttribute('points', sp.join(' '));
-    dia.setAttribute('points', dp.join(' '));
-    sd.setAttribute('cx', tx); sd.setAttribute('cy', tsy); sd.setAttribute('opacity', 1);
-    dd.setAttribute('cx', tx); dd.setAttribute('cy', tdy); dd.setAttribute('opacity', 1);
-    const landed = idx + 1;
-    if (landed === lastLanded) return;
-    lastLanded = landed;
-    deleteDemo(landed);
-    for (let i = 0; i < 7; i++) days[i].style.color = '#d8cabb';
-    for (let i = 0; i < landed; i++) days[D[i].day].style.color = '#4a4039';
-    for (let r = 0; r < 3; r++){
-      const i = landed - 1 - r, row = rows[r];
-      if (i >= 0){
-        const d = D[i], col = C[d.sev];
-        row.classList.add('on');
-        row.querySelector('.hday').textContent = d.dd;
-        row.querySelector('.htime').textContent = d.tm;
-        const hv = row.querySelector('.hv');
-        hv.innerHTML = d.v + '<span class="hu">mmHg</span>'; hv.style.color = col.c;
-        row.querySelector('.hp').innerHTML = '&#9829; ' + d.p + ' bpm';
-        const hb = row.querySelector('.hb'); hb.textContent = col.ic + ' ' + col.w;
-        hb.style.background = col.bb; hb.style.color = col.c;
-      } else row.classList.remove('on');
-    }
-  }
-  /* when the week completes, the middle row performs one swipe-to-delete and returns */
-  let swipeShown = false, swipeT1 = null, swipeT2 = null;
-  function deleteDemo(landed){
-    const row = rows[1];
-    if (landed >= N && !swipeShown){
-      swipeShown = true;
-      swipeT1 = setTimeout(()=> row.classList.add('swiped'), 700);
-      swipeT2 = setTimeout(()=> row.classList.remove('swiped'), 2600);
-    } else if (landed < N - 3 && swipeShown){
-      swipeShown = false;
-      clearTimeout(swipeT1); clearTimeout(swipeT2);
-      row.classList.remove('swiped');
-    }
-  }
-  let dRect = null;
-  FR.reads.push((dirty)=>{ if (dirty || !dRect) dRect = demo.getBoundingClientRect(); });
-  FR.writes.push((dirty)=>{
-    if (!dirty || !dRect) return;
-    if (!(FR.scrollDirty || FR.resizeDirty)) return;
-    const total = dRect.height - FR.vh;
-    if (total <= 0) return;
-    const tt = Math.min(1, Math.max(0, -dRect.top / total));
-    prog.style.width = (tt*100)+'%';
-    prog.style.opacity = (tt > .02 && tt < .98) ? 1 : 0;
-    render(tt*(N-1));
-  });
-  render(0);
-})();
-
 /* the sleeping button: dips, whispers, and (when the pond is awake) splashes */
 (function(){
   const b = document.getElementById('sleepbtn'), m = document.getElementById('sleepmsg');
@@ -922,18 +1050,30 @@ addEventListener('focus', ()=>{ FOCUSED = true; });
   });
 })();
 
-/* hero scroll cue fades once the journey starts */
+/* hero scroll cue: shown at the very top, fades out once the journey starts, and fades back
+   in when the user returns all the way to the top (so it is never gone for good) */
 (function(){
   const c = document.getElementById('scrollcue');
   if (!c) return;
-  const off = ()=>{
-    if (scrollY > 60){
-      removeEventListener('scroll', off);
-      c.style.opacity = 0;
-      setTimeout(()=> c.remove(), 450);
-    }
+  const sync = ()=>{ c.style.opacity = scrollY > 60 ? '0' : '1'; };
+  sync();
+  addEventListener('scroll', sync, {passive:true});
+})();
+
+/* mobile sticky CTA: slides up once you're past the hero, tucks away again near the footer CTA */
+(function(){
+  var b = document.getElementById('mcta');
+  if (!b) return;
+  var sync = function(){
+    /* only after the app has been explained: reveal once Step 3 (the last step) is on screen */
+    var s3 = document.querySelector('.s-combo .conf');
+    var explained = s3 ? (s3.getBoundingClientRect().top < innerHeight * 0.3) : false;
+    var nearBottom = (innerHeight + scrollY) > (document.documentElement.scrollHeight - innerHeight * 0.9);
+    b.classList.toggle('show', explained && !nearBottom);
   };
-  addEventListener('scroll', off, {passive:true});
+  sync();
+  addEventListener('scroll', sync, {passive:true});
+  addEventListener('resize', sync, {passive:true});
 })();
 
 /* FAQ: smooth accordion — answers unfold/fold instead of popping */
@@ -953,6 +1093,148 @@ addEventListener('focus', ()=>{ FOCUSED = true; });
     });
   });
 })();
+</script>
+
+<!-- GSAP ScrollTrigger (vendored locally, no third-party CDN) drives the narrative:
+     hero  --(zoom on "Logged")-->  how-it-works  --(steps cover-reveal in from the right).
+     Progressive enhancement: with no GSAP or reduced motion, every screen simply stacks
+     and scrolls normally. -->
+<script src="assets/js/gsap.min.js" defer></script>
+<script src="assets/js/ScrollTrigger.min.js" defer></script>
+<script>
+addEventListener('DOMContentLoaded', function(){
+  if (!window.gsap || !window.ScrollTrigger) return;          /* page works fine without it */
+  gsap.registerPlugin(ScrollTrigger);
+  var RENDER = /[?&]coralyRender=1\b/.test(location.search);   /* tests/visual capture flag */
+  var mm = gsap.matchMedia();
+
+  /* ============ DESKTOP (>900px): the cinematic pinned narrative — pin + scrub + snap + cover ============ */
+  mm.add('(min-width:1200px) and (prefers-reduced-motion: no-preference)', function(){
+    document.body.classList.add('fx-on');
+
+    /* cover-reveal: Steps 2 & 3 begin fully off-screen to the right; they slide left to cover the
+       prior step (see the fx-on CSS). Reverted automatically when reduced-motion takes over. */
+    gsap.set('.s-combo', { xPercent: 100 });
+
+    /* One pinned timeline built as FOUR EQUAL SEGMENTS (1 unit each) between five rest-states:
+       hero -> logged -> step1 -> step2 -> step3. Equal units => equal scroll => one full swipe moves
+       you exactly ONE state. In each segment the transition is the main event and the photo reveals
+       are quick accents that finish on arrival, so revealing images costs almost no scroll.
+       onUpdate flips the header to its light variant while the red chapter is on screen. */
+    const tl = gsap.timeline({ scrollTrigger:{
+      trigger:'#intro', start:'top top', end:'+=250%', pin:true, scrub: RENDER ? true : 1, anticipatePin:1, refreshPriority:3,
+      /* SNAP — once scrolling stops, settle to the NEAREST rest-state (not always the next one), so
+         slowing down rests on the page you reached rather than being flung onward. The glide is slow
+         and eased (velocity-scaled) so it reads as a settle, not a jump. Disabled under RENDER. */
+      snap: RENDER ? false : { snapTo:'labels', duration:{ min:.4, max:1.1 }, delay:.15, ease:'sine.inOut' }
+    }});
+
+    /* Segment 1 (0->0.5)  HERO -> LOGGED — a quick HALF-scroll flourish (it's one typographic beat,
+       not a content step): "One Photo." + lede clear and "Logged." grows to fill much of the screen,
+       easing to a HOLD there, still fully solid. That big held word is the rest-state. */
+    tl.to('#hlOne',    { autoAlpha:0, y:-18, ease:'power1.in', duration:.3 }, 0)
+      .to('#herofade', { autoAlpha:0, y:-18, ease:'power1.in', duration:.3 }, 0)
+      .to('#hlLogged', { scale:3.5, force3D:false, ease:'power1.inOut', duration:.5 }, 0)
+
+    /* Segment 2 (0.5->1.5)  LOGGED -> STEP 1 — the held word keeps growing and dissolves; Step 1
+       (oat) takes its place and its photos fade in, all spread across the segment so the mid-scroll
+       frame is clearly in transition (not a repeat of the word). */
+      .to('#hlLogged', { scale:14, force3D:false, ease:'power1.in', duration:1 }, .5)
+      .to('#hlLogged', { autoAlpha:0, ease:'power1.in', duration:.55 }, .7)
+      .to('#how',      { autoAlpha:1, duration:.4 }, .75)
+      .from('.s-fourc .ph', { autoAlpha:0, ease:'power1.out', duration:.3, stagger:.06 }, 1.0)
+
+    /* Segment 3 (1.5->2.5)  STEP 1 -> STEPS 2+3 — the combined split panel slides in from the right
+       and COVERS Step 1 (higher layer + soft leading-edge shadow), filling the whole segment. */
+      .to('.s-combo', { xPercent:0, ease:'power2.inOut', duration:1 }, 1.5)
+
+    /* rest-states: hero + a quick Logged flourish, Step 1, then the combined Step 2+3 */
+      .addLabel('hero',   0)
+      .addLabel('logged', .5)
+      .addLabel('step1',  1.5)
+      .addLabel('step2',  2.5);
+
+    /* ---------- DESKTOP "once it's in": pinned WORD-SWAP then FLOOD-FILL ----------
+       One pinned timeline. First the bridge's second line ("working for you.") swaps through the
+       feature words as you scroll. Then each feature panel floods UP like a colour tide to cover
+       the last — the "reach the next page" feel of Step 1 arriving over "Logged.". Snapped to rest
+       on each beat; matchMedia reverts it all on mobile. */
+    var floodPanels = gsap.utils.toArray('#onceitsin .ost');
+    if (floodPanels.length > 1) {
+      var bw = gsap.utils.toArray('#onceitsin .obridge .bw');
+      var cyc = Math.max(0, bw.length - 1);                 /* word-swap transitions on the bridge */
+      /* TUNED FOR LENGTH: word swaps are quick (WORDDUR), floods deliberate (FLOODDUR), and the whole
+         pin maps to PERUNIT% of viewport scroll per timeline unit — far shorter than 1 screen each. */
+      var WORDDUR = 0.5, FLOODDUR = 1, PERUNIT = 55;
+      var wordSpan = cyc * WORDDUR;
+      var totalDur = wordSpan + (floodPanels.length - 1) * FLOODDUR;
+      gsap.set(floodPanels, { clipPath:'inset(0% 0% 0% 0%)' });
+      gsap.set(floodPanels.slice(1), { clipPath:'inset(100% 0% 0% 0%)' });   /* hidden; they flood up from the foot */
+      if (bw.length) { gsap.set(bw, { yPercent:120, autoAlpha:0 }); gsap.set(bw[0], { yPercent:0, autoAlpha:1 }); }
+      var tlF = gsap.timeline({ scrollTrigger:{
+        trigger:'#onceitsin', start:'top top', end:'+=' + Math.round(totalDur * PERUNIT) + '%',
+        pin:true, scrub: RENDER ? true : 1, anticipatePin:1, refreshPriority:1,
+        snap: RENDER ? false : { snapTo:'labels', duration:{ min:.2, max:.6 }, delay:.08, ease:'sine.inOut' }
+      }});
+      /* 1) bridge word-swap — each next word rises as the last one lifts away (quick beats) */
+      bw.forEach(function(w, i){
+        if (i > 0) tlF.to(bw[i-1], { yPercent:-120, autoAlpha:0, ease:'power2.in', duration:WORDDUR }, (i - 1) * WORDDUR)
+                      .fromTo(w, { yPercent:120, autoAlpha:0 }, { yPercent:0, autoAlpha:1, ease:'power2.out', duration:WORDDUR }, (i - 1) * WORDDUR + .06);
+        tlF.addLabel('w' + i, i * WORDDUR);
+      });
+      /* 2) flood the features, beginning right after the word-swap settles */
+      floodPanels.forEach(function(pn, i){
+        if (i > 0) tlF.to(pn, { clipPath:'inset(0% 0% 0% 0%)', ease:'power2.inOut', duration:FLOODDUR }, wordSpan + (i - 1) * FLOODDUR);
+        if (i > 0) tlF.addLabel('f' + i, wordSpan + i * FLOODDUR);
+      });
+    }
+
+    /* expose rest-state scroll positions + the slow-scroll range so tests/visual can render the
+       progression (every label here shows up automatically). RENDER-only. */
+    if (RENDER) window.__HOW__ = function(){   /* read fresh, after ScrollTrigger has its range */
+      var st = tl.scrollTrigger, dur = tl.duration();
+      return {
+        fast: Object.keys(tl.labels).map(function(n){ return { name:n, y: Math.round(st.start + (tl.labels[n]/dur)*(st.end - st.start)) }; }),
+        slow: { start: st.start, end: st.end }
+      };
+    };
+
+    return function(){
+      document.body.classList.remove('fx-on');
+      if (tl.scrollTrigger) tl.scrollTrigger.kill();   tl.kill();
+    };
+  });
+
+  /* ============ MOBILE (<=900px): native vertical scroll + light entrance reveals ============
+     No pin, no scrub, no snap, no horizontal cover — touch scrolling stays the user's. Each piece
+     just rises gently into place as it enters the viewport (transform/opacity only, GPU-cheap). */
+  mm.add('(max-width:1199px) and (prefers-reduced-motion: no-preference)', function(){
+    if (!RENDER) {
+      gsap.from('#screen1 .introh1 .line1, #screen1 .introh1 .line2, #herofade > *', {
+        autoAlpha:0, y:18, duration:.6, ease:'power2.out', stagger:.1 });
+      ['.s-fourc', '.s-combo .cap', '.s-combo .conf'].forEach(function(sel){
+        /* immediateRender:false keeps the content VISIBLE by default and only snaps to the
+           from-state when the trigger actually fires. If a stale layout means the trigger
+           never plays (the bug that left steps blank on small/slow screens), the content
+           simply stays visible instead of being stuck hidden. */
+        gsap.from(sel + ' .step-copy, ' + sel + ' .ph, ' + sel + ' .vf, ' + sel + ' .cshot', {
+          scrollTrigger:{ trigger:sel, start:'top 85%', toggleActions:'play none none none', once:true },
+          immediateRender:false, autoAlpha:0, y:26, duration:.5, ease:'power2.out', stagger:.08 });
+      });
+      /* belt-and-braces: recompute every trigger once everything (images, fonts) has settled */
+      window.addEventListener('load', function(){ ScrollTrigger.refresh(); });
+    }
+    if (RENDER) window.__HOW__ = function(){   /* section scroll positions, read fresh after layout */
+      var off = function(sel){ var el = document.querySelector(sel); return el ? Math.round(el.getBoundingClientRect().top + window.scrollY) : 0; };
+      var last = document.querySelector('.s-combo');
+      var endY = last ? Math.round(last.getBoundingClientRect().bottom + window.scrollY - innerHeight) : (document.body.scrollHeight - innerHeight);
+      return {
+        fast: [ {name:'hero', y:0}, {name:'step1', y:off('.s-fourc')}, {name:'step2', y:off('.s-combo .cap')}, {name:'step3', y:off('.s-combo .conf')} ],
+        slow: { start:0, end: Math.max(0, endY) }
+      };
+    };
+  });
+});
 </script>
 </body>
 </html>

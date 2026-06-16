@@ -1,0 +1,9 @@
+# dev tooling only — never part of the deployed static site
+node_modules/
+npm-debug.log*
+.DS_Store
+# rendered progression contact sheets (regenerate locally with `npm run shots`)
+tests/visual/output/
+# NOTE: package-lock.json is intentionally committed (pins exact dependency
+# versions + integrity hashes, so `npm install` can't silently pull a changed
+# or malicious patch). Do not add it here.
