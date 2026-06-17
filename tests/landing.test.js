@@ -38,36 +38,17 @@ function assert(cond, msg) { if (!cond) throw new Error(msg || 'assertion failed
 
 /* ============ shared suite — runs against every page ============ */
 function rideSuite(label, file) {
-  test(`[${label}] loads with no script errors (pond degrades gracefully without WebGL)`, () => {
+  test(`[${label}] loads with no script errors`, () => {
     const h = open(file);
     assert(h.errors.length === 0, 'JS errors: ' + h.errors.join(' | '));
   });
 
-  test(`[${label}] reduced motion removes the pond canvas`, () => {
-    const h = open(file, { media: { '(prefers-reduced-motion: reduce)': true } });
-    assert(!h.exists('#pond'), 'pond should be removed under reduced motion');
-    assert(h.counters.getContext === 0, 'WebGL must not init under reduced motion');
-  });
-
-  test(`[${label}] pond perf-gate: phones/small screens skip WebGL`, () => {
-    const h = open(file, { media: { '(max-width:1199px)': true } });
-    assert(h.counters.getContext === 0, 'getContext must NOT be called on small screens');
-    assert(!h.exists('#pond'), 'pond should be removed on small screens');
-  });
-
-  test(`[${label}] pond perf-gate: coarse pointer skips WebGL`, () => {
-    const h = open(file, { media: { '(pointer:coarse)': true } });
-    assert(h.counters.getContext === 0, 'getContext must NOT be called for coarse pointers');
-  });
-
-  test(`[${label}] pond perf-gate: low device memory skips WebGL`, () => {
-    const h = open(file, { deviceMemory: 4 });
-    assert(h.counters.getContext === 0, 'getContext must NOT be called when deviceMemory <= 4');
-  });
-
-  test(`[${label}] pond runs on desktop (gate does not short-circuit)`, () => {
+  /* The live WebGL "pond" was retired (Jun 2026) in favour of the static warm background — there should
+     be no canvas and no WebGL context created on any device, including desktop where it used to run. */
+  test(`[${label}] the WebGL pond is retired — no canvas, no WebGL anywhere`, () => {
     const h = open(file, { deviceMemory: 8 });
-    assert(h.counters.getContext >= 1, 'desktop should attempt WebGL (getContext called)');
+    assert(!h.exists('#pond'), 'the #pond canvas should be gone');
+    assert(h.counters.getContext === 0, 'no WebGL context should ever be created');
   });
 
   /* The "once it's in" story is now a STATIC, naturally-scrolled feature section built from real

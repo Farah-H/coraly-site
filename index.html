@@ -32,153 +32,36 @@
     background:#F6EBE1;color:#2a211c;-webkit-font-smoothing:antialiased;overflow-x:hidden;-webkit-user-select:none;user-select:none;touch-action:manipulation;-webkit-tap-highlight-color:transparent}
   .serif{font-family:"New York","Iowan Old Style",Georgia,"Times New Roman",serif}
 
-  /* the pond: one continuous surface behind the whole page */
-  #pond{position:fixed;inset:0;width:100%;height:100%;z-index:0}
+  /* subtle static grain texture over the warm background */
   #grain{position:fixed;inset:0;z-index:2;pointer-events:none;mix-blend-mode:soft-light;opacity:.32;
     background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
     background-size:240px 240px}
   main{position:relative;z-index:1}
 
   /* ---------- section 1: hero ---------- */
-  .hero{position:relative;min-height:100vh;display:flex;align-items:center;justify-content:center;gap:clamp(36px,6vw,90px);padding:24px;flex-wrap:wrap}
-  .hero .copy{max-width:560px;text-align:left}
   h1{font-size:clamp(48px,7vw,96px);line-height:.97;letter-spacing:-.03em;font-weight:700}
   h1 .accent{color:#B52121}
-  .lede{font-size:clamp(18px,2.2vw,22px);color:#6f6357;margin:24px 0 32px;max-width:44ch}
   /* sized by viewport HEIGHT (the image is 1:2.17 tall): width = 34vh keeps the full phone
      ~77vh tall, always inside the viewport with air around it */
   .phoneframe{width:clamp(190px,34vh,300px);max-width:72vw;background:#0c0c0d;border-radius:clamp(30px,5vh,46px);
     padding:clamp(7px,1.1vh,11px);flex:0 0 auto;
     box-shadow:0 0 16px 3px rgba(108,78,52,.20),0 0 44px 12px rgba(108,78,52,.09)}
   .phoneframe img{display:block;width:100%;height:auto;border-radius:clamp(24px,4vh,36px)}
-  @media (max-width:1199px){
-    .hero{flex-direction:column;justify-content:center;gap:44px;padding-top:72px}
-    .hero .copy{text-align:center}
-    .lede{margin:24px auto 32px}
-    .ctarow{justify-content:center}
-  }
   .applepill{display:inline-flex;align-items:center;gap:9px;background:#111;color:#fff;text-decoration:none;
     padding:13px 26px;border-radius:13px;line-height:1.2;transition:transform .15s ease}
   .applepill:active{transform:scale(.97)}
   .applepill .a{font-size:27px}
   .applepill .t small{display:block;font-size:11px;font-weight:400}
   .applepill .t{font-size:17px;font-weight:700}
-  .ctarow{display:flex;align-items:center;gap:18px;flex-wrap:wrap}
-  .sleep{position:relative;display:inline-flex;align-items:center;gap:7px;background:#3a3531;color:#fff;
-    padding:9px 18px;border-radius:11px;line-height:1.2;cursor:pointer;border:0;font:inherit;
-    transition:transform .26s cubic-bezier(.3,1.6,.4,1)}
-  .sleep .a{font-size:20px;opacity:.85}
-  .sleep .t small{display:block;font-size:9.5px;font-weight:400;opacity:.75}
-  .sleep .t{font-size:13.5px;font-weight:700}
-  .sleep.dip{transform:translateY(14px) scale(.97)}
   .tfpill{padding:16px 32px;border-radius:15px}   /* convention: brand-black Apple pill (not green) */
   .applepill .apple{width:20px;height:auto;flex:0 0 auto;position:relative;top:-1px}
   .tfpill .t{font-size:19px}
   .tfpill .t small{font-size:12.5px}
-  .sleepmsg{margin-top:14px;font-size:14px;color:#6f6357;min-height:1.5em;font-style:italic;
-    transition:opacity .3s;font-family:"New York","Iowan Old Style",Georgia,serif}
-  .newchip{margin-top:14px;font-size:12.5px;font-weight:600;color:#6f6357;letter-spacing:.02em}
   .scrollcue{position:absolute;bottom:26px;left:50%;transform:translateX(-50%);font-size:20px;
     color:#6f6357;animation:cuebob 2.4s ease-in-out infinite;transition:opacity .4s;pointer-events:none}
   @keyframes cuebob{0%,100%{transform:translate(-50%,0)}50%{transform:translate(-50%,8px)}}
   @media (max-width:1199px){ .scrollcue{display:none} }
   .herotrust{margin:0;font-size:14px;font-weight:600;color:#6f6357}
-
-  /* ---------- section 2: know what your numbers mean / catches a bad reading ----------
-     card anatomy + palette mirror Coraly_AppStore_Screenshots_Final.html */
-  .sev{height:200vh;position:relative}
-  .sevprog{position:sticky;top:env(safe-area-inset-top,0px);height:3px;width:0;background:#1A6E2E;z-index:4;opacity:0;transition:background .25s,opacity .3s}
-  .sevpin{position:sticky;top:3px;min-height:100vh;display:flex;align-items:flex-start;justify-content:center;
-    gap:clamp(36px,6vw,90px);padding:max(24px,calc(50vh - 250px)) 24px 24px;flex-wrap:wrap}
-  .sev .copy{flex:0 1 520px;max-width:520px;text-align:left;align-self:stretch;
-    display:flex;flex-direction:column;justify-content:center;transition:none}
-  .sev h2{font-size:clamp(38px,5.5vw,72px);line-height:.99;letter-spacing:-.025em;font-weight:700;
-    transition:opacity .3s ease}
-  .sev .lede{font-size:clamp(17px,2vw,20px);color:#6f6357;margin:22px 0 0;max-width:44ch;min-height:3.3em}
-  .sevpill{background:#1A6E2E;margin-top:26px;align-self:flex-start;transition:background .25s}
-  /* top-anchored so height changes grow downward only — the numbers never move */
-  .rcard{flex:0 1 340px;background:#fffdfb;border:1px solid #e7ddd2;border-radius:20px;padding:20px;
-    box-shadow:0 0 16px 3px rgba(108,78,52,.20),0 0 44px 12px rgba(108,78,52,.09);
-    transition:background .25s,border-color .25s}
-  /* collapsible regions: height animates instead of popping */
-  .rc-coll{display:grid;grid-template-rows:0fr;transition:grid-template-rows .35s ease}
-  .rc-coll.on{grid-template-rows:1fr}
-  .rc-coll>.cl{overflow:hidden;min-height:0}
-  .rc-read{border-radius:14px;border:1.5px solid;padding:18px 16px 14px;text-align:center;
-    transition:background .25s,border-color .25s}
-  .rc-big{font-family:"SF Pro Rounded",ui-rounded,-apple-system,system-ui,sans-serif;font-weight:800;
-    font-size:46px;line-height:1;letter-spacing:-.02em;transition:color .25s;
-    font-variant-numeric:tabular-nums}
-  .rc-big .sl{font-weight:300;font-size:.6em;opacity:.5;padding:0 3px}
-  .rc-big .u{font-size:13px;font-weight:600;opacity:.55;margin-left:5px}
-  .rcard .badge{display:inline-flex;align-items:center;gap:4px;margin-top:10px;font-size:13px;font-weight:800;
-    padding:4px 12px;border-radius:99px;transition:background .25s,color .25s}
-  .rcard .pulse{margin-top:8px;font-size:14.5px;font-weight:700;color:#1A6E2E}
-  .rc-fine{margin-top:12px;font-size:11px;line-height:1.5;color:#6f6357;text-align:left}
-  .impx{text-align:center}
-  .impx .impt{font-size:19px;font-weight:700;color:#2a211c;margin-top:16px;letter-spacing:-.01em}
-  .impx .impp{font-size:13.5px;color:#6f6357;line-height:1.5;margin:8px auto 0;max-width:34ch}
-  .rc-ctas .measure{display:block;background:#C0382F;color:#fff;font-size:15px;font-weight:700;text-align:center;
-    border-radius:13px;padding:13px;margin-top:14px}
-  .rc-ctas .anyway{display:block;text-align:center;margin-top:12px;font-size:13.5px;font-weight:500;color:#4a4039}
-  .rcard .tryit{margin-top:14px}
-  .rcard .tryit label{display:block;font-size:12.5px;font-weight:700;color:#7a6c61;margin-bottom:6px}
-  .rcard .tryit input[type=range]{width:100%;accent-color:#1A6E2E}
-  /* ---------- section 3: see your trend at a glance ---------- */
-  .trend{height:220vh;position:relative}
-  .trendprog{position:sticky;top:env(safe-area-inset-top,0px);height:3px;width:0;background:#1A6E2E;z-index:4;opacity:0;transition:background .25s,opacity .3s}
-  .trendpin{position:sticky;top:3px;min-height:100vh;display:flex;align-items:flex-start;justify-content:center;
-    gap:clamp(36px,6vw,90px);padding:max(24px,calc(50vh - 250px)) 24px 24px;flex-wrap:wrap}
-  .trend .copy{flex:0 1 520px;max-width:520px;text-align:left;align-self:stretch;
-    display:flex;flex-direction:column;justify-content:center}
-  .trend h2{font-size:clamp(38px,5.5vw,72px);line-height:.99;letter-spacing:-.025em;font-weight:700}
-  .trend h2 span{transition:color .25s}
-  .trend .lede{font-size:clamp(17px,2vw,20px);color:#6f6357;margin:22px 0 0;max-width:44ch}
-  .trendpill{background:#1A6E2E;margin-top:26px;align-self:flex-start}
-  .tcard{flex:0 1 360px;background:#fffdfb;border:1px solid #e7ddd2;border-radius:20px;padding:20px;
-    box-shadow:0 0 16px 3px rgba(108,78,52,.20),0 0 44px 12px rgba(108,78,52,.09)}
-  .tcard .chart{position:relative;background:#fff;border:1px solid #e3d6c6;border-radius:13px;padding:12px;overflow:hidden}
-  .tcard .band{position:absolute;left:12px;right:12px;top:44px;height:38px;background:#E7F0E8;border-radius:5px}
-  .tcard svg{position:relative;display:block;width:100%;height:auto}
-  .tcard .days{display:flex;justify-content:space-between;font-size:11px;color:#726658;margin-top:8px;padding:0 4px}
-  .tcard .days span{transition:color .2s}
-  .tcard .legend{display:flex;gap:16px;justify-content:center;margin-top:10px;font-size:11.5px;font-weight:700}
-  .tcard .legend .ls{color:#B52121}.tcard .legend .ld{color:#1A6E2E}
-  .tcard .hrow{position:relative;border-radius:12px;overflow:hidden;margin-top:8px;min-height:62px;
-    opacity:0;transform:translateY(6px);transition:opacity .3s ease,transform .3s ease}
-  .tcard .hrow.on{opacity:1;transform:none}
-  .hdel{position:absolute;top:0;right:0;bottom:0;width:64px;background:#C0382F;color:#fff;
-    display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;
-    font-size:11px;font-weight:700;border-radius:12px}
-  .hdel svg{width:15px;height:16px}
-  .hmain{position:relative;display:flex;align-items:center;gap:10px;background:#fff;
-    border:1px solid #e3d6c6;border-radius:12px;padding:9px 12px;min-height:62px;
-    transition:transform .45s ease}
-  .hrow.swiped .hmain{transform:translateX(-72px)}
-  .hleft{flex:0 0 52px}
-  .hday{font-size:13px;font-weight:700;color:#2a211c}
-  .htime{font-size:10px;color:#726658;margin-top:2px}
-  .hmid{flex:1}
-  .hv{font-family:"SF Pro Rounded",ui-rounded,-apple-system,system-ui,sans-serif;font-size:17px;
-    font-weight:800;font-variant-numeric:tabular-nums;letter-spacing:-.01em}
-  .hv .hu{font-size:9px;font-weight:600;color:#726658;margin-left:3px;letter-spacing:0}
-  .hp{font-size:11px;font-weight:700;color:#1A6E2E;margin-top:2px}
-  .hb{display:inline-flex;align-items:center;gap:3px;font-size:10.5px;font-weight:800;
-    padding:4px 10px;border-radius:99px;white-space:nowrap}
-  .chev{color:#726658;font-size:16px;font-weight:700}
-  @media (max-width:1199px){
-    .trendpin{flex-direction:column;justify-content:flex-start;gap:18px;padding-top:calc(env(safe-area-inset-top,0px) + 12px)}
-    .trend .copy{order:-1;text-align:center;align-self:center;display:block;flex:0 0 auto}
-    .trend .lede{margin:22px auto 0}
-    .tcard{align-self:center;flex:0 0 auto;max-width:92vw}
-  }
-  @media (max-width:1199px){
-    .sevpin{flex-direction:column;justify-content:flex-start;gap:18px;padding-top:calc(env(safe-area-inset-top,0px) + 12px)}
-    .sev .copy{order:-1;text-align:center;align-self:center;display:block;flex:0 0 auto}
-    .sev .lede{margin:22px auto 0}
-    .rcard{align-self:center;flex:0 0 auto;max-width:92vw}
-  }
-
 
   /* ---------- "once it's in": vertical feature states, REAL app screenshots ---------- */
   .once{position:relative}
@@ -286,10 +169,7 @@
   .closetrust{font-size:16px;color:#6f6357;margin-top:16px;font-weight:600}
   .lockrow{display:flex;align-items:center;justify-content:center;gap:26px;margin-top:30px;flex-wrap:wrap}
   .lk{display:inline-flex;align-items:center;gap:11px}
-  .lk img{height:38px;width:auto;cursor:pointer}
-  .lk img.plunge{animation:plunge .9s cubic-bezier(.34,1.3,.5,1)}
-  @keyframes plunge{0%{transform:none}32%{transform:translateY(32px) scale(.93)}
-    60%{transform:translateY(-7px)}80%{transform:translateY(3px)}100%{transform:none}}
+  .lk img{height:38px;width:auto}
   .lk .wm{font-family:"New York","Iowan Old Style",Georgia,serif;font-weight:600;font-size:34px;
     color:#C0382F;letter-spacing:-.01em;line-height:1}
   .vrule{width:1px;height:40px;background:rgba(42,33,28,.15)}
@@ -304,40 +184,10 @@
   .foot-row nav a{color:#4a4039;text-decoration:none;font-weight:600}
   .foot-fine{font-size:11.5px;color:#6f6357;line-height:1.65;margin-top:18px;max-width:90ch}
   .foot-c{font-size:11.5px;color:#6f6357;margin-top:14px}
-  /* mobile compaction: the full story of each ride fits above Safari's bar */
-  @media (max-width:1199px){
-    .sev h2,.trend h2{font-size:clamp(30px,8.2vw,38px)}
-    .sev .lede,.trend .lede{margin-top:10px;font-size:16px;min-height:0}
-    .sevpill,.trendpill{margin-top:14px}
-    .rcard{padding:14px}
-    .rc-big{font-size:38px}
-    .rc-read{padding:12px 12px 10px}
-    .rc-fine{font-size:10px;margin-top:8px}
-    .rcard .tryit{margin-top:10px}
-    .impx .impt{font-size:17px;margin-top:12px}
-    .impx .impp{font-size:12.5px}
-    .rc-ctas .measure{padding:10px;margin-top:10px}
-    .rc-ctas .anyway{margin-top:8px}
-    .tcard{padding:12px}
-    .tcard .chart{padding:8px}
-    .tcard .days{font-size:10px;margin-top:6px}
-    .tcard .legend{font-size:10.5px;margin-top:6px}
-    .tcard .hrow{min-height:50px;margin-top:7px}
-    .hmain{min-height:50px;padding:6px 10px}
-    .hv{font-size:14px}
-    .hp{font-size:10px;margin-top:1px}
-    .hday{font-size:12px}
-    .htime{font-size:9px}
-    .hb{font-size:9.5px;padding:3px 8px}
-  }
   /* fix 1: size and centre the pinned stories in the SMALL viewport (above
      Safari's bar). svh = vh on desktop, so nothing changes there. */
   @supports (height:100svh){
     .hero,.closesec{min-height:100svh}
-    .sevpin,.trendpin{min-height:100svh}
-    @media (min-width:1200px){
-      .sevpin,.trendpin{padding-top:max(24px,calc(50svh - 250px))}
-    }
   }
 
   /* ---------- NEW (Jun 2026): top chrome + hero→step text-mask-zoom intro ---------- */
@@ -562,7 +412,6 @@
   addEventListener('load', function(){ scrollTo(0, 0); });
 </script>
 
-<canvas id="pond" aria-hidden="true"></canvas>
 <div id="grain" aria-hidden="true"></div>
 
 <!-- mobile-only sticky CTA: thumb-zone primary action, revealed after the hero -->
@@ -739,7 +588,7 @@
       <h2>Your readings deserve<br><span class="accent serif">a calmer home.</span></h2>
       <p class="closetrust">Free. Private. Calm.</p>
       <div class="lockrow">
-        <span class="lk"><picture><source srcset="assets/drop-512.webp" type="image/webp"><img src="assets/drop-512.png" alt="" width="356" height="512" loading="lazy" decoding="async" id="lkdrop" title="plop"></picture><span class="wm">Coraly</span></span>
+        <span class="lk"><picture><source srcset="assets/drop-512.webp" type="image/webp"><img src="assets/drop-512.png" alt="" width="356" height="512" loading="lazy" decoding="async" id="lkdrop"></picture><span class="wm">Coraly</span></span>
         <span class="vrule" aria-hidden="true"></span>
         <a class="applepill tfpill" href="https://testflight.apple.com/join/NeDKevPZ"><svg class="apple" viewBox="0 0 384 512" aria-hidden="true"><path fill="currentColor" d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg><span class="t"><small>Try it early on</small>TestFlight</span></a>
       </div>
@@ -759,296 +608,6 @@
 </main>
 
 <script>
-/* ---- frame scheduler: one rAF; all reads, then all writes; dirty-flagged ---- */
-const FR = {
-  reads: [], writes: [], scrollDirty: true, resizeDirty: true, dirtyUntil: 0,
-  touch(ms){ this.dirtyUntil = Math.max(this.dirtyUntil, performance.now() + ms); },
-  get dirty(){ return this.scrollDirty || this.resizeDirty || performance.now() < this.dirtyUntil; }
-};
-addEventListener('scroll', ()=>{ FR.scrollDirty = true; }, {passive:true});
-FR.vh = innerHeight;
-let _fw = innerWidth;
-addEventListener('resize', ()=>{
-  FR.scrollDirty = true; FR.resizeDirty = true;
-  /* only real resizes update the ride viewport: Safari's collapsing toolbar
-     (small height-only change) must not shift the scroll maths mid-ride */
-  if (innerWidth !== _fw || Math.abs(innerHeight - FR.vh) > 150){
-    FR.vh = innerHeight; _fw = innerWidth;
-  }
-}, {passive:true});
-let FOCUSED = document.hasFocus();
-addEventListener('blur',  ()=>{ FOCUSED = false; });
-addEventListener('focus', ()=>{ FOCUSED = true; });
-(function master(){
-  if (!document.hidden){
-    const dirty = FR.dirty;
-    for (const f of FR.reads)  f(dirty);
-    for (const f of FR.writes) f(dirty);
-    FR.scrollDirty = FR.resizeDirty = false;
-  }
-  requestAnimationFrame(master);
-})();
-
-(function(){
-  const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const canvas = document.getElementById('pond');
-
-  /* ============ the canonical pond (LOVED · day) ============ */
-  if (reduced){ canvas.remove(); return; }
-  /* Performance gate (added Jun 2026): the live WebGL pond is a desktop delight whose
-     interactive ripples are a pointer affordance. On phones / small or low-RAM devices it
-     is pure ambient cost — a full-screen fragment pass every frame — and it is the main
-     driver of the mobile Total Blocking Time. There we fall back to the same calm beige as
-     the reduced-motion / no-WebGL path. TUNE these thresholds if you want the pond on more
-     devices (e.g. drop the coarse-pointer test to keep it on touch laptops). */
-  const lowPower = matchMedia('(max-width:1199px)').matches
-                || matchMedia('(pointer:coarse)').matches
-                || (navigator.deviceMemory > 0 && navigator.deviceMemory <= 4);
-  if (lowPower){ canvas.remove(); return; }
-  const gl = canvas.getContext('webgl',{alpha:false,antialias:false,depth:false,stencil:false});
-  if (!gl){ canvas.remove(); return; }
-
-  let dead = false;
-  canvas.addEventListener('webglcontextlost', e=>{ e.preventDefault(); dead = true; canvas.remove(); });
-
-  const VS='attribute vec2 aPos;varying vec2 vUv;void main(){vUv=aPos*.5+.5;gl_Position=vec4(aPos,0.,1.);}';
-  const SIM='precision mediump float;varying vec2 vUv;uniform sampler2D uCurr,uPrev;uniform vec2 uRes;uniform vec4 uDrops[8];uniform int uN;uniform vec4 uObs;uniform float uLvl;uniform vec4 uObs2;uniform float uLvl2;uniform vec4 uObs3;uniform float uLvl3;uniform vec4 uObs4;uniform float uLvl4;uniform float uDamp;'+
-    'void main(){vec2 px=1.0/uRes;'+
-    'float l=texture2D(uCurr,vUv-vec2(px.x,0.)).r,r=texture2D(uCurr,vUv+vec2(px.x,0.)).r,'+
-    'u=texture2D(uCurr,vUv+vec2(0.,px.y)).r,d=texture2D(uCurr,vUv-vec2(0.,px.y)).r,'+
-    'p=texture2D(uPrev,vUv).r;'+
-    'float h=(l+r+u+d)*0.5-p;h=(h-0.5)*uDamp+0.5;if(abs(h-0.5)<0.0012)h=0.5;'+
-    'for(int i=0;i<8;i++){if(i>=uN)break;float dist=distance(vUv,uDrops[i].xy);'+
-    'h+=uDrops[i].z*exp(-dist*dist/(uDrops[i].w*uDrops[i].w));}'+
-    'if(vUv.x>uObs.x&&vUv.x<uObs.z&&vUv.y>uObs.y&&vUv.y<uObs.w)h=uLvl;'+
-    'if(vUv.x>uObs2.x&&vUv.x<uObs2.z&&vUv.y>uObs2.y&&vUv.y<uObs2.w)h=uLvl2;'+
-    'if(vUv.x>uObs3.x&&vUv.x<uObs3.z&&vUv.y>uObs3.y&&vUv.y<uObs3.w)h=uLvl3;'+
-    'if(vUv.x>uObs4.x&&vUv.x<uObs4.z&&vUv.y>uObs4.y&&vUv.y<uObs4.w)h=uLvl4;'+
-    'gl_FragColor=vec4(clamp(h,0.,1.),0.,0.,1.);}';
-  const DRAW='precision mediump float;varying vec2 vUv;uniform sampler2D uH;uniform vec2 uRes;uniform float uGlint;'+
-    'void main(){vec2 px=1.0/uRes;'+
-    'float l=texture2D(uH,vUv-vec2(px.x,0.)).r,r=texture2D(uH,vUv+vec2(px.x,0.)).r,'+
-    'u=texture2D(uH,vUv+vec2(0.,px.y)).r,d=texture2D(uH,vUv-vec2(0.,px.y)).r;'+
-    'float gx=(r-l),gy=(u-d);vec3 n=normalize(vec3(-gx*30.0,-gy*30.0,1.0));'+
-    'float diff=clamp(dot(n,normalize(vec3(-.25,.45,.85))),0.,1.);'+
-    'vec3 col=mix(vec3(.910,.850,.780),vec3(.965,.922,.882),diff);'+
-    'col=mix(col,vec3(.78,.70,.62),pow(1.0-diff,2.0)*.35);'+
-    'float spec=pow(clamp(dot(reflect(normalize(vec3(.25,-.45,-.85)),n),vec3(0.,0.,1.)),0.,1.),34.0);'+
-    'col+=vec3(1.0,.99,.97)*spec*uGlint;'+
-    'col+=vec3(.76,.34,.27)*spec*spec*uGlint*0.43;'+
-    'float vig=smoothstep(1.25,.35,distance(vUv,vec2(.5,.45)));'+
-    'col=mix(vec3(.910,.850,.780)*1.02,col,vig);'+
-    'gl_FragColor=vec4(col,1.0);}';
-  function sh(t,s){const x=gl.createShader(t);gl.shaderSource(x,s);gl.compileShader(x);return x;}
-  function prog(fs){const p=gl.createProgram();gl.attachShader(p,sh(gl.VERTEX_SHADER,VS));gl.attachShader(p,sh(gl.FRAGMENT_SHADER,fs));gl.linkProgram(p);return p;}
-  const simP=prog(SIM),drawP=prog(DRAW);
-  const quad=gl.createBuffer();gl.bindBuffer(gl.ARRAY_BUFFER,quad);
-  gl.bufferData(gl.ARRAY_BUFFER,new Float32Array([-1,-1,1,-1,-1,1,1,1]),gl.STATIC_DRAW);
-  function bindQuad(p){const lo=gl.getAttribLocation(p,'aPos');gl.enableVertexAttribArray(lo);gl.vertexAttribPointer(lo,2,gl.FLOAT,false,0,0);}
-  /* sim grid follows the screen's aspect so ripples stay round; the approved
-     220x160 is preserved exactly on desktop and landscape (AR >= 1.2) */
-  let SW = 220, SH = 160;
-  {
-    const AR = innerWidth / innerHeight;
-    if (AR < 1.2){
-      if (AR >= 1){ SW = 200; SH = Math.round(200 / AR); }
-      else { SH = 220; SW = Math.max(110, Math.round(220 * AR)); }
-    }
-  }
-  const extHF=gl.getExtension('OES_texture_half_float');
-  if (!extHF){ canvas.remove(); return; }   /* no half-float: skip the pond rather than degrade */
-  gl.getExtension('OES_texture_half_float_linear');
-  const texType=extHF.HALF_FLOAT_OES;
-  function target(){const tx=gl.createTexture();gl.bindTexture(gl.TEXTURE_2D,tx);
-    gl.texImage2D(gl.TEXTURE_2D,0,gl.RGBA,SW,SH,0,gl.RGBA,texType,null);
-    gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MIN_FILTER,gl.LINEAR);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MAG_FILTER,gl.LINEAR);
-    gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_S,gl.CLAMP_TO_EDGE);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_T,gl.CLAMP_TO_EDGE);
-    const fb=gl.createFramebuffer();gl.bindFramebuffer(gl.FRAMEBUFFER,fb);
-    gl.framebufferTexture2D(gl.FRAMEBUFFER,gl.COLOR_ATTACHMENT0,gl.TEXTURE_2D,tx,0);return{tx,fb};}
-  let A=target();
-  if(gl.checkFramebufferStatus(gl.FRAMEBUFFER)!==gl.FRAMEBUFFER_COMPLETE){ canvas.remove(); return; }
-  let B=target(),C=target();
-  [A,B,C].forEach(x=>{gl.bindFramebuffer(gl.FRAMEBUFFER,x.fb);gl.clearColor(0.5,0,0,1);gl.clear(gl.COLOR_BUFFER_BIT);});
-  const dpr=Math.min(1.5,devicePixelRatio||1);
-  function size(){canvas.width=innerWidth*dpr;canvas.height=innerHeight*dpr;}
-  size();addEventListener('resize',size);
-
-  let drops=[];
-  function drop(u,v,s,rad){drops.push([u,v,s,rad]);if(drops.length>8)drops.shift();}
-  function dropPx(x,y,s,rad){drop(x/innerWidth,1-y/innerHeight,s,rad);}
-
-  const TUNE = { depth:.12, period:6000, damp:.973, glint:.28, rainMs:2200, crown:1 };   /* approved 12 Jun 2026 */
-  function dropLevel(now){
-    const t = now % TUNE.period;
-    if (t < 70) return 0.5 - TUNE.depth * (t / 70);
-    const x = (t - 70) / 1000;
-    return 0.5 - TUNE.depth * Math.exp(-x * 3.0) * Math.cos(x * 12.0);
-  }
-  const pfEl = document.getElementById('phoneframe');
-  const rcEl = document.getElementById('rcard');
-  const tcEl = document.getElementById('tcard');
-  const fcEl = document.getElementById('fcard');
-  const uO=gl.getUniformLocation(simP,'uObs');
-  const uO2=gl.getUniformLocation(simP,'uObs2');
-  const uL2=gl.getUniformLocation(simP,'uLvl2');
-  const uO3=gl.getUniformLocation(simP,'uObs3');
-  const uL3=gl.getUniformLocation(simP,'uLvl3');
-  const uO4=gl.getUniformLocation(simP,'uObs4');
-  const uL4=gl.getUniformLocation(simP,'uLvl4');
-  const uL=gl.getUniformLocation(simP,'uLvl');
-  const uDampL=gl.getUniformLocation(simP,'uDamp');
-  const uGlintL=gl.getUniformLocation(drawP,'uGlint');
-  const uD=gl.getUniformLocation(simP,'uDrops'),uN=gl.getUniformLocation(simP,'uN'),
-        uR=gl.getUniformLocation(simP,'uRes'),uC=gl.getUniformLocation(simP,'uCurr'),
-        uP=gl.getUniformLocation(simP,'uPrev'),uH=gl.getUniformLocation(drawP,'uH'),
-        uR2=gl.getUniformLocation(drawP,'uRes');
-  /* cached body rects — recomputed only when the page may have moved */
-  let R_P=null, R_R=null, R_T=null, R_F=null;
-  FR.reads.push((dirty)=>{
-    if (dead || (!FOCUSED && !FR.resizeDirty)) return;
-    if (dirty || !R_P){
-      R_P = pfEl && pfEl.getBoundingClientRect();
-      R_R = rcEl && rcEl.getBoundingClientRect();
-      R_T = tcEl && tcEl.getBoundingClientRect();
-      R_F = fcEl && fcEl.getBoundingClientRect();
-    }
-  });
-  function setObs(r, uO_, inset){
-    if (r && r.bottom > 0 && r.top < innerHeight)
-      gl.uniform4f(uO_, (r.left+inset)/innerWidth, 1-(r.bottom-inset)/innerHeight,
-                        (r.right-inset)/innerWidth, 1-(r.top+inset)/innerHeight);
-    else gl.uniform4f(uO_, 2., 2., 3., 3.);
-  }
-  /* ambient rain + splash-back crowns, folded into the frame — no standing timers */
-  let lastRain = 0;
-  const splashers = [{rect:()=>R_P, phase:0, last:-1}, {rect:()=>R_R, phase:TUNE.period/4, last:-1},
-                     {rect:()=>R_T, phase:TUNE.period/2, last:-1}, {rect:()=>R_F, phase:3*TUNE.period/4, last:-1}];
-  function rainAndCrowns(now){
-    if (now - lastRain >= TUNE.rainMs){ lastRain = now; drop(Math.random(),Math.random(),.04+Math.random()*.05,.010+Math.random()*.005); }
-    for (const s of splashers){
-      const tp = now + s.phase, cyc = Math.floor(tp / TUNE.period);
-      if (cyc === s.last || (tp % TUNE.period) < 70) continue;
-      s.last = cyc;
-      const r = s.rect();
-      if (!r || r.bottom < 0 || r.top > innerHeight) continue;
-      const cx = r.left + r.width/2, cy = r.top + r.height/2;
-      for (let i = 0; i < 9; i++){
-        const edge = Math.random();
-        let x, y;
-        if (edge < .35){ x = r.left + r.width*Math.random(); y = r.bottom; }
-        else if (edge < .6){ x = r.left + r.width*Math.random(); y = r.top; }
-        else { x = Math.random() < .5 ? r.left : r.right; y = r.top + r.height*Math.random(); }
-        const a = Math.atan2(y - cy, x - cx), d = 14 + Math.random()*70;
-        setTimeout(()=> dropPx(x + Math.cos(a)*d, y + Math.sin(a)*d,
-                               (.09 + Math.random()*.13) * TUNE.crown, .008 + Math.random()*.004),
-                   30 + Math.random()*220);
-      }
-    }
-  }
-  FR.writes.push(()=>{
-    if (dead || (!FOCUSED && !FR.resizeDirty)) return;
-    const now = performance.now();
-    gl.useProgram(simP);bindQuad(simP);
-    gl.bindFramebuffer(gl.FRAMEBUFFER,C.fb);gl.viewport(0,0,SW,SH);
-    gl.activeTexture(gl.TEXTURE0);gl.bindTexture(gl.TEXTURE_2D,A.tx);gl.uniform1i(uC,0);
-    gl.activeTexture(gl.TEXTURE1);gl.bindTexture(gl.TEXTURE_2D,B.tx);gl.uniform1i(uP,1);
-    gl.uniform2f(uR,SW,SH);
-    const f=new Float32Array(32);for(let i=0;i<drops.length;i++)f.set(drops[i],i*4);
-    setObs(R_P, uO, 6);
-    gl.uniform1f(uL2, dropLevel(now + TUNE.period/4));   setObs(R_R, uO2, 6);
-    gl.uniform1f(uL3, dropLevel(now + TUNE.period/2));   setObs(R_T, uO3, 6);
-    gl.uniform1f(uL4, dropLevel(now + 3*TUNE.period/4)); setObs(R_F, uO4, 6);
-    gl.uniform1f(uL, dropLevel(now));
-    gl.uniform1f(uDampL, TUNE.damp);
-    gl.uniform4fv(uD,f);gl.uniform1i(uN,drops.length);drops=[];
-    gl.drawArrays(gl.TRIANGLE_STRIP,0,4);
-    const t=B;B=A;A=C;C=t;
-    gl.useProgram(drawP);bindQuad(drawP);
-    gl.bindFramebuffer(gl.FRAMEBUFFER,null);gl.viewport(0,0,canvas.width,canvas.height);
-    gl.activeTexture(gl.TEXTURE0);gl.bindTexture(gl.TEXTURE_2D,A.tx);gl.uniform1i(uH,0);
-    gl.uniform2f(uR2,SW,SH);
-    gl.uniform1f(uGlintL, TUNE.glint);
-    gl.drawArrays(gl.TRIANGLE_STRIP,0,4);
-    rainAndCrowns(now);
-  });
-
-  /* DRAG · D1 baseline: gentle taps along the path */
-  let lastT=0;
-  addEventListener('pointermove',e=>{
-    const now=performance.now();
-    if(now-lastT>80){ lastT=now; dropPx(e.clientX,e.clientY,.10,.013); }
-  },{passive:true});
-
-
-  /* CLICK · C3 splash: a strike plus a crown of secondary droplets */
-  addEventListener('pointerdown',e=>{
-    if (e.target.closest('.rcard,.tcard,.fcard,.lk,.sleep')) return;
-    dropPx(e.clientX,e.clientY,.5,.018);
-    for(let i=0;i<6;i++){
-      const a=Math.random()*6.283, r=46+Math.random()*54;
-      setTimeout(()=>dropPx(e.clientX+Math.cos(a)*r, e.clientY+Math.sin(a)*r,
-                            .12+Math.random()*.10, .009), 60+Math.random()*180);
-    }
-  },{passive:true});
-
-  /* the sleeping button lands in the water as it dips */
-  const slpB = document.getElementById('sleepbtn');
-  if (slpB){
-    slpB.addEventListener('pointerdown', ()=>{
-      const r = slpB.getBoundingClientRect();
-      setTimeout(()=> dropPx(r.left + r.width/2, r.bottom + 12, .4, .016), 130);
-    });
-  }
-
-  /* delight 1: opening a question plops a droplet beside the card */
-  document.querySelectorAll('.fcard details').forEach(d=>{
-    d.addEventListener('toggle', ()=>{
-      if (!d.open || !fcEl) return;
-      const r = d.getBoundingClientRect(), c = fcEl.getBoundingClientRect();
-      const room = innerWidth - c.right;
-      const x = room > 46 ? c.right + 26 : Math.max(20, c.left - 26);
-      dropPx(x, r.top + 22, .12, .013);
-    });
-  });
-
-  /* delight 2: click the lockup drop and it performs its own name */
-  const lkDrop = document.getElementById('lkdrop');
-  if (lkDrop){
-    let busy = false;
-    lkDrop.addEventListener('pointerdown', ()=>{
-      if (busy) return; busy = true;
-      lkDrop.classList.add('plunge');
-      const r = lkDrop.getBoundingClientRect();
-      const cx = r.left + r.width/2, cy = r.bottom + 16;
-      setTimeout(()=>{
-        dropPx(cx, cy, .5, .018);
-        for(let i=0;i<6;i++){
-          const a=Math.random()*6.283, rad=40+Math.random()*50;
-          setTimeout(()=>dropPx(cx+Math.cos(a)*rad, cy+Math.sin(a)*rad,
-                                .12+Math.random()*.10, .009), 60+Math.random()*160);
-        }
-      }, 280);
-      setTimeout(()=>{ lkDrop.classList.remove('plunge'); busy = false; }, 950);
-    });
-  }
-})();
-
-/* the sleeping button: dips, whispers, and (when the pond is awake) splashes */
-(function(){
-  const b = document.getElementById('sleepbtn'), m = document.getElementById('sleepmsg');
-  if (!b) return;
-  const lines = ['Soon. The pond is settling.', 'Almost. Apple is having a look.',
-                 'Patience is good for blood pressure.', 'Any day now.'];
-  let i = 0, busy = false;
-  b.addEventListener('click', ()=>{
-    if (busy) return; busy = true;
-    b.classList.add('dip');
-    m.style.opacity = 0;
-    setTimeout(()=>{ m.textContent = lines[i++ % lines.length]; m.style.opacity = 1; }, 140);
-    setTimeout(()=>{ b.classList.remove('dip'); busy = false; }, 320);
-  });
-})();
-
 /* hero scroll cue: shown at the very top, fades out once the journey starts, and fades back
    in when the user returns all the way to the top (so it is never gone for good) */
 (function(){
@@ -1081,7 +640,6 @@ addEventListener('focus', ()=>{ FOCUSED = true; });
     if (d.open) d.classList.add('expanded');
     d.querySelector('summary').addEventListener('click', e=>{
       e.preventDefault();
-      FR.touch(500);
       if (d.classList.contains('expanded')){
         d.classList.remove('expanded');
         setTimeout(()=>{ d.open = false; }, 370);
@@ -1209,19 +767,34 @@ addEventListener('DOMContentLoaded', function(){
      just rises gently into place as it enters the viewport (transform/opacity only, GPU-cheap). */
   mm.add('(max-width:1199px) and (prefers-reduced-motion: no-preference)', function(){
     if (!RENDER) {
-      gsap.from('#screen1 .introh1 .line1, #screen1 .introh1 .line2, #herofade > *', {
-        autoAlpha:0, y:18, duration:.6, ease:'power2.out', stagger:.1 });
+      /* Every selector an entrance tween hides via autoAlpha. The hard safety net below clears
+         opacity/visibility on ALL of these, so a tween interrupted on a real device (a mobile-Safari
+         timing quirk that headless never reproduces) can never strand content invisible. */
+      var heroSel = '#screen1 .introh1 .line1, #screen1 .introh1 .line2, #herofade > *';
+      var revealed = heroSel + ',.s-fourc .step-copy,.s-fourc .ph,.s-fourc .vf,.s-fourc .cshot,'
+                   + '.s-combo .step-copy,.s-combo .ph,.s-combo .vf,.s-combo .cshot';
+      function safetyUnhide(){ gsap.set(revealed, { autoAlpha:1, clearProps:'transform' }); }
+
+      /* hero rises gently on load; onComplete locks it visible (above the fold, so it must never
+         depend on a tween finishing to be seen). */
+      gsap.from(heroSel, {
+        autoAlpha:0, y:18, duration:.6, ease:'power2.out', stagger:.1,
+        onComplete:function(){ gsap.set(heroSel, { autoAlpha:1, clearProps:'transform' }); } });
+
       ['.s-fourc', '.s-combo .cap', '.s-combo .conf'].forEach(function(sel){
-        /* immediateRender:false keeps the content VISIBLE by default and only snaps to the
-           from-state when the trigger actually fires. If a stale layout means the trigger
-           never plays (the bug that left steps blank on small/slow screens), the content
-           simply stays visible instead of being stuck hidden. */
-        gsap.from(sel + ' .step-copy, ' + sel + ' .ph, ' + sel + ' .vf, ' + sel + ' .cshot', {
+        /* immediateRender:false keeps the content VISIBLE until the trigger actually fires, so a step
+           whose trigger never plays simply stays visible; onComplete locks a played reveal visible. */
+        var t = sel + ' .step-copy, ' + sel + ' .ph, ' + sel + ' .vf, ' + sel + ' .cshot';
+        gsap.from(t, {
           scrollTrigger:{ trigger:sel, start:'top 85%', toggleActions:'play none none none', once:true },
-          immediateRender:false, autoAlpha:0, y:26, duration:.5, ease:'power2.out', stagger:.08 });
+          immediateRender:false, autoAlpha:0, y:26, duration:.5, ease:'power2.out', stagger:.08,
+          onComplete:function(){ gsap.set(t, { autoAlpha:1, clearProps:'transform' }); } });
       });
-      /* belt-and-braces: recompute every trigger once everything (images, fonts) has settled */
-      window.addEventListener('load', function(){ ScrollTrigger.refresh(); });
+
+      /* belt-and-braces: recompute triggers once images/fonts settle, then a hard safety net a moment
+         later guarantees nothing was left hidden; also unhide on Safari bfcache (back/forward) restore. */
+      window.addEventListener('load', function(){ ScrollTrigger.refresh(); setTimeout(safetyUnhide, 1800); });
+      window.addEventListener('pageshow', function(e){ if (e.persisted) safetyUnhide(); });
     }
     if (RENDER) window.__HOW__ = function(){   /* section scroll positions, read fresh after layout */
       var off = function(sel){ var el = document.querySelector(sel); return el ? Math.round(el.getBoundingClientRect().top + window.scrollY) : 0; };
