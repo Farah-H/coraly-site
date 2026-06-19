@@ -5,8 +5,8 @@
  *   node tests/landing.test.js          # run, exits non-zero if anything fails
  *   npm test                            # same, via package.json
  *
- * The shared ride/gate/slider checks run against BOTH index.html (the live coming-soon
- * page) and launch.html (the launch-day page) so the two can't silently drift apart.
+ * Since the app went live (June 2026) there is a single page: index.html is the App Store
+ * launch page. The old coming-soon/TestFlight page and its launch.html twin were removed.
  * Add a test by calling test('name', () => { ... assert(...) }).
  */
 'use strict';
@@ -14,9 +14,10 @@ const fs = require('fs');
 const path = require('path');
 const { loadPage } = require('./harness');
 
+// Single live page since launch (June 2026): index.html IS the App Store launch page. The old
+// coming-soon/TestFlight page and its launch.html twin were removed once the app went live.
 const PAGES = {
   'index.html':  path.join(__dirname, '..', 'index.html'),
-  'launch.html': path.join(__dirname, '..', 'launch.html'),
 };
 
 // Simulated geometry of the two scroll rides. Heights mirror the CSS (.sev = 200vh,
@@ -36,7 +37,7 @@ const tests = [];
 const test = (name, fn) => tests.push([name, fn]);
 function assert(cond, msg) { if (!cond) throw new Error(msg || 'assertion failed'); }
 
-/* ============ shared suite — runs against every page ============ */
+/* ============ page suite ============ */
 function rideSuite(label, file) {
   test(`[${label}] loads with no script errors`, () => {
     const h = open(file);
@@ -62,37 +63,15 @@ function rideSuite(label, file) {
 }
 
 rideSuite('index.html', PAGES['index.html']);
-rideSuite('launch.html', PAGES['launch.html']);
 
-/* ============ parity guard — index.html and launch.html must be IDENTICAL except the CTA ===========
- * The two pages are the same site; the ONLY intended difference is the call to action:
- * index.html = TestFlight ("Try it early"), launch.html = App Store ("Get the app" / "Download
- * on the App Store"). This normalises every known CTA difference to a placeholder, then requires
- * the two files to be byte-identical. Any other divergence (a fix landing on one page but not the
- * other, a stray edit) fails loudly and points at the first differing line. */
-function normalizeCTA(s) {
-  return s
-    .replace(/<small>Try it early on<\/small>TestFlight/g, '__CTA_PILL__')      // inline applepills
-    .replace(/<small>Download on the<\/small>App Store/g,  '__CTA_PILL__')
-    .replace(/Try Coraly early on TestFlight/g, '__CTA_ARIA__')                 // mcta aria-label
-    .replace(/Get Coraly on the App Store/g,    '__CTA_ARIA__')
-    .replace(/Try it early/g, '__CTA_LABEL__')                                  // compact pill text
-    .replace(/Get the app/g,  '__CTA_LABEL__')
-    .replace(/https:\/\/testflight\.apple\.com\/join\/NeDKevPZ/g, '__CTA_URL__')// links (incl. JSON-LD installUrl)
-    .replace(/https:\/\/apps\.apple\.com\/app\/id6778913380/g,    '__CTA_URL__')
-    .replace(/brand-black (?:TestFlight|App Store) CTA right/g, '__CTA_COMMENT__');
-}
-
-test('index.html and launch.html are identical except for the CTA wording/link', () => {
-  const a = normalizeCTA(fs.readFileSync(PAGES['index.html'], 'utf8')).split('\n');
-  const b = normalizeCTA(fs.readFileSync(PAGES['launch.html'], 'utf8')).split('\n');
-  let i = 0;
-  while (i < a.length && i < b.length && a[i] === b[i]) i++;
-  assert(a.length === b.length && i === a.length,
-    'index.html and launch.html have drifted beyond the CTA (line ' + (i + 1) + '):\n' +
-    '      index:  ' + (a[i] === undefined ? '<end of file>' : a[i].trim()) + '\n' +
-    '      launch: ' + (b[i] === undefined ? '<end of file>' : b[i].trim()) + '\n' +
-    '      The two pages must stay the same except the TestFlight vs App Store CTA.');
+/* ============ launch CTA guard — the live page points at the App Store, not TestFlight ===========
+ * Since launch, index.html must carry the App Store call to action and must NOT regress to the old
+ * coming-soon TestFlight CTA. */
+test('index.html uses the App Store CTA (no leftover TestFlight / coming-soon CTA)', () => {
+  const src = fs.readFileSync(PAGES['index.html'], 'utf8');
+  assert(src.includes('https://apps.apple.com/app/id6778913380'), 'App Store link is missing');
+  assert(!/testflight\.apple\.com/.test(src), 'a TestFlight link is still present');
+  assert(!/Try it early|Try Coraly early on TestFlight/.test(src), 'coming-soon TestFlight CTA text is still present');
 });
 
 /* ============ snap guard — the how-it-works pin must settle on whole steps ============

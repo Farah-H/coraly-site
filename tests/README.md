@@ -1,6 +1,6 @@
 # Coraly landing-page tests
 
-Behaviour tests for the scroll-driven landing pages (`index.html`, `launch.html`), run in
+Behaviour tests for the scroll-driven landing pages (`index.html`), run in
 [jsdom](https://github.com/jsdom/jsdom). No browser, no system libraries, no build step.
 
 ```bash
