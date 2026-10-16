@@ -8,7 +8,7 @@ Coraly is not a medical device and does not provide diagnosis or treatment.
 
 - [Website](https://getcoraly.app/)
 - [App Store](https://apps.apple.com/app/id6778913380)
-- [Privacy policy](https://farah-h.github.io/coraly-privacy-policy/)
+- [Privacy policy](https://getcoraly.app/privacy/)
 
 ## Key facts
 
