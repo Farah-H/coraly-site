@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#F6EBE1">
 <title>Coraly | Privacy Policy</title>
-<meta name="description" content="Coraly’s privacy policy. Your readings, notes and photos stay on your device and in Apple Health. No account, no ads, no tracking.">
+<meta name="description" content="Coraly’s privacy policy. Your readings stay on your device, and in Apple Health if you connect it. No account, no ads, no tracking.">
 <link rel="canonical" href="https://getcoraly.app/privacy/">
 <link rel="icon" type="image/svg+xml" href="/assets/icon.svg">
 <link rel="icon" type="image/png" sizes="96x96" href="/assets/icon-96.png">
@@ -15,7 +15,7 @@
 <link rel="icon" type="image/x-icon" href="/assets/favicon.ico">
 <link rel="apple-touch-icon" sizes="180x180" href="/assets/icon-180.png">
 <meta property="og:title" content="Coraly | Privacy Policy">
-<meta property="og:description" content="Your readings, notes and photos stay on your device and in Apple Health. No account, no ads, no tracking.">
+<meta property="og:description" content="Your readings stay on your device, and in Apple Health if you connect it. No account, no ads, no tracking.">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Coraly">
 <meta property="og:url" content="https://getcoraly.app/privacy/">
@@ -121,6 +121,8 @@
         <a href="#short">The short version</a>
         <a href="#camera">Camera</a>
         <a href="#health">Health Data</a>
+        <a href="#on-device">Widgets, App Lock &amp; Reminders</a>
+        <a href="#feedback">Feedback &amp; Bug Reports</a>
         <a href="#accounts">No Accounts or Advertising</a>
         <a href="#diagnostics">Diagnostics &amp; Anonymous Usage</a>
         <a href="#third-parties">Third Parties</a>
@@ -133,23 +135,40 @@
 
         <section id="short" class="short">
           <h2 class="h">The short version</h2>
-          <p>Your readings, notes and photos stay on your device and in your Apple Health app, and Coraly sends them nowhere. The app does not collect or send any data about you automatically. To help fix bugs, Coraly keeps anonymous error counts on your device that you can turn off, and if you allow it in your iOS settings, Apple shares anonymous, aggregate statistics with us. None of this can identify you or include your readings. The only personal things that ever leave your device are what you explicitly choose to send: a monitor photo and the reading on it when you submit an accuracy correction, or your message when you send feedback.</p>
+          <p>Coraly keeps your readings in its own store on your iPhone. Connecting Apple Health is optional: if you allow it, Coraly also saves your readings there and shows the readings it finds there, and if you don’t, the app works just the same. Coraly has no account and does not collect or send any data about you automatically. To help fix bugs, Coraly keeps anonymous error counts on your device that you can turn off, and if you allow it in your iOS settings, Apple shares anonymous, aggregate statistics with me. None of this can identify you or include your readings. The only things that ever leave your device are what you explicitly choose to send: a monitor photo, the numbers Coraly read, your corrected numbers, and your app and iOS version when you submit an accuracy correction; or your message, with your app version, build number, iOS version and iPhone model, when you send feedback or a bug report.</p>
         </section>
 
         <section>
           <h2 class="h">What Data the App Uses</h2>
-          <p>Coraly asks for access to your camera and to Apple Health. Here is exactly what happens with each:</p>
+          <p>Coraly uses your camera to read your blood pressure monitor. Everything else is your choice: Apple Health, a photo from your library, Face ID for App Lock, and notifications for reminders. Here is exactly what happens with each:</p>
         </section>
 
         <section id="camera" class="rule">
           <h2 class="h">Camera</h2>
-          <p>When you take a photo of your blood pressure machine, that image is processed entirely on your device to read the numbers. The photo is not saved to your camera roll and is discarded as soon as the numbers have been extracted.</p>
-          <p>There is one exception. If Coraly misreads a number and you correct it, the app may ask whether you want to send that photo and the corrected numbers to help improve accuracy. This only happens if you explicitly tap “Send &amp; Help Improve”. It is never automatic, you can choose “Don’t ask again”, and if you do not send, nothing leaves your device. If you do send, Coraly delivers the photo, the numbers it read, your corrected numbers, and your app and iOS version to me through a form-handling service called Web3Forms. I keep them to improve Coraly’s automatic reading, and to check that later updates keep reading accurately. They are not linked to your identity and are never sold or used for advertising.</p>
+          <p>When you take a photo of your blood pressure machine, or choose one from your library, Coraly reads the numbers entirely on your device. A photo you take is not saved to your camera roll, and Coraly does not keep it: it is discarded as soon as you have finished with that reading. Coraly never changes or deletes photos in your library. You can also type a reading in yourself without using the camera at all.</p>
+          <p>There is one exception. If Coraly misreads a number and you correct it, the app may ask whether you want to send that photo and the numbers to help improve accuracy. This only happens if you explicitly tap “Send &amp; Help Improve”. It is never automatic, you can choose “Don’t ask again”, and if you do not send, nothing leaves your device. If you do send, Coraly delivers a reduced-size copy of the photo, the numbers it read, your corrected numbers, and your app and iOS version to me through a form-handling service called Web3Forms. No name, contact details, date or other reading goes with it. I keep them to improve Coraly’s automatic reading, and to check that later updates keep reading accurately. They are not linked to your identity and are never sold or used for advertising.</p>
+          <p>If the upload doesn’t go through, nothing is sent, and you can try again.</p>
         </section>
 
         <section id="health" class="rule">
           <h2 class="h">Health Data</h2>
-          <p>Coraly writes your blood pressure and pulse readings to Apple Health on your device. It also reads from Apple Health to display your history and graphs within the app. This data stays on your device and in Apple Health, and is never sent to a server or used for advertising. The only exception is the optional accuracy correction described under Camera above: if you explicitly choose to send a corrected reading, those few numbers (and the photo) are sent so the reading tool can be improved. Nothing else about your readings ever leaves your device.</p>
+          <p>Coraly keeps your blood pressure and pulse readings in its own store on your iPhone, so it works fully whether or not you connect Apple Health. iOS encrypts this store, and it can’t be read while your iPhone is locked. Like other app data, it is included in your iPhone’s own backups.</p>
+          <p>Connecting Apple Health is optional. If you allow it, Coraly saves the readings you confirm to Apple Health, and reads the blood pressure readings from the last three months there, including ones from other apps and devices, along with the pulse recorded with them, so your history and graphs match. If you decline, or turn access off later, Coraly keeps working from its own store, and can add your readings to Apple Health if you turn access on later. When you delete a reading in Coraly, it is also removed from Apple Health if Coraly saved it there. Readings saved by other apps are never deleted.</p>
+          <p>Your readings are never sent to a server or used for advertising. The only exception is the optional accuracy correction described under Camera above: if you explicitly choose to send one, the numbers Coraly read and your corrected numbers (and the photo) are sent so the reading tool can be improved. Nothing else about your readings ever leaves your device.</p>
+          <p>If you delete Coraly, its own store is deleted with it. Anything it saved to Apple Health stays there until you remove it in the Health app.</p>
+        </section>
+
+        <section id="on-device" class="rule">
+          <h2 class="h">Widgets, App Lock &amp; Reminders</h2>
+          <p>These features work entirely on your iPhone and send nothing.</p>
+          <p><strong>Widgets:</strong> to show your latest reading and your streak, Coraly keeps a small copy of them in a space on your iPhone that only Coraly and its widgets can read. The Lock Screen widget hides your numbers by default, because anyone nearby can see a Lock Screen. You can show them in Coraly → Settings → Privacy → “Show Numbers on Lock Screen”.</p>
+          <p><strong>App Lock:</strong> if you turn on “Require Face ID”, iOS checks your Face ID, Touch ID or passcode. Coraly only learns whether the check succeeded and never sees your face, fingerprint or passcode.</p>
+          <p><strong>Reminders and Calm Moment:</strong> morning and evening reminders are scheduled on your iPhone and never contain your readings. The Calm Moment breathing exercise records nothing.</p>
+        </section>
+
+        <section id="feedback" class="rule">
+          <h2 class="h">Feedback &amp; Bug Reports</h2>
+          <p>When you send feedback or report a bug from Coraly → Settings, Coraly delivers your message, your app version and build number, your iOS version and your iPhone model to me through Web3Forms. It never includes your readings or other health data. If sending fails, nothing is sent, and you can try again.</p>
         </section>
 
         <section id="accounts" class="rule">
@@ -160,19 +179,19 @@
         <section id="diagnostics" class="rule">
           <h2 class="h">Diagnostics &amp; Anonymous Usage</h2>
           <p>To keep Coraly reliable, a small amount of anonymous, technical information helps fix crashes and bugs and shows whether the app keeps working well. Coraly has no analytics server of its own, and the app does not send any data about you automatically.</p>
-          <p><strong>Where it comes from:</strong> on your device, Coraly keeps anonymous crash diagnostics and simple error counts (for example, that reading a photo failed, or that saving to Apple Health did not succeed). These stay on your device and are not uploaded. Separately, if you have turned on sharing in iOS Settings → Privacy &amp; Security → Analytics &amp; Improvements, Apple shares anonymous, aggregate statistics with us as part of the platform, such as crash reports, performance, installs, and how many people keep using the app.</p>
-          <p><strong>What it never includes:</strong> your blood-pressure or pulse readings, your notes, the dates of your readings, or your photos; and your name, email, location, or any identifier that could be used to recognise you. It is anonymous and cannot be linked back to you.</p>
-          <p><strong>Your choice:</strong> you can turn off the on-device diagnostics at any time in Coraly → Settings → Privacy → “Share Anonymous Diagnostics”. The aggregate statistics from Apple follow your device setting in iOS Settings → Privacy &amp; Security → Analytics &amp; Improvements.</p>
+          <p><strong>Where it comes from:</strong> on your device, Coraly keeps anonymous crash diagnostics and simple error counts (for example, that reading a photo failed, or that saving to Apple Health did not succeed). These stay on your device and are not uploaded. Separately, if you have turned on sharing in iOS Settings → Privacy &amp; Security → Analytics &amp; Improvements, Apple shares anonymous, aggregate statistics with me as part of the platform, such as crash reports, performance, installs, and how many people keep using the app.</p>
+          <p><strong>What it never includes:</strong> your blood-pressure or pulse readings, the dates of your readings, or your photos; and your name, email, location, or any identifier that could be used to recognise you. It is anonymous and cannot be linked back to you.</p>
+          <p><strong>Your choice:</strong> you can turn off the on-device diagnostics at any time in Coraly → Settings → Privacy → “Share Anonymous Diagnostics”. Turning it off also clears what was already recorded. The aggregate statistics from Apple follow your device setting in iOS Settings → Privacy &amp; Security → Analytics &amp; Improvements.</p>
         </section>
 
         <section id="third-parties" class="rule">
           <h2 class="h">Third Parties</h2>
-          <p>Coraly does not sell, rent, or disclose your information. Two providers may be involved, and only with data you or your device choose to share. <strong>Apple</strong> supplies the anonymous crash reports and App Store statistics described above, as part of the platform. <strong>Web3Forms</strong>, a form-handling service, delivers to me the things you explicitly send: an accuracy correction (a monitor photo, the numbers Coraly read, your corrected numbers, and your app and iOS version), or a feedback or bug report (your message, plus your app version and device model). Web3Forms passes these to me and does not use them for advertising. If you never tap “Send &amp; Help Improve” and never send feedback, nothing goes to Web3Forms.</p>
+          <p>Coraly does not sell, rent, or disclose your information. Two providers may be involved, and only with data you or your device choose to share. <strong>Apple</strong> supplies the anonymous crash reports and App Store statistics described above, as part of the platform. <strong>Web3Forms</strong>, a form-handling service, delivers to me the things you explicitly send from the app: an accuracy correction (a monitor photo, the numbers Coraly read, your corrected numbers, and your app and iOS version), or feedback or a bug report (your message, your app version and build number, your iOS version and your iPhone model). Web3Forms passes these to me and does not use them for advertising. If you never tap “Send &amp; Help Improve” and never send feedback or a bug report, nothing goes to Web3Forms.</p>
         </section>
 
         <section id="children" class="rule">
           <h2 class="h">Children</h2>
-          <p>Coraly does not knowingly collect personal information from anyone, including children. The only information involved is anonymous diagnostics that cannot identify any individual, so the app is safe for use by people of any age.</p>
+          <p>Coraly does not knowingly collect personal information from anyone, including children. Apart from anything someone chooses to send me, such as feedback or a correction, the only information involved is anonymous diagnostics that cannot identify any individual.</p>
         </section>
 
         <section id="changes" class="rule">
